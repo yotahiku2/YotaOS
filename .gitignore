@@ -1,0 +1,4 @@
+
+# YotaOS image build artifacts
+build/output/
+*.iso
