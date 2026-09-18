@@ -17,6 +17,9 @@
 		<package name="konsole"/>
 		<package name="kate"/>
 		<package name="ark"/>
+                
+                <!-- Script plugins or other shii hehe im karim typing ts btw -->
+                <package name="plymouth-plugin-script"/>
 
 		<!-- Basic desktop functionality -->
 		<package name="fuse"/>
