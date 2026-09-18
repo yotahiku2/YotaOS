@@ -1,0 +1,39 @@
+<image>
+	<profiles>
+		<profile name="YotaOS-Desktop" description="YotaOS KDE Plasma Desktop">
+			<requires profile="DesktopCommon"/>
+		</profile>
+	</profiles>
+
+	<packages type="image" patternType="plusRecommended" profiles="YotaOS-Desktop">
+		<!-- Core KDE Plasma desktop -->
+		<namedCollection name="kde-desktop-environment"/>
+
+		<!-- Web browser -->
+		<namedCollection name="firefox"/>
+
+		<!-- YotaOS default applications -->
+		<package name="dolphin"/>
+		<package name="konsole"/>
+		<package name="kate"/>
+		<package name="ark"/>
+
+		<!-- Basic desktop functionality -->
+		<package name="fuse"/>
+		<package name="kde-l10n"/>
+
+		<!-- Avoid redundant/unwanted packages -->
+		<ignore name="gnome-disk-utility"/>
+		<ignore name="mariadb-server-utils"/>
+		<ignore name="system-config-language"/>
+		<ignore name="system-config-printer"/>
+		<ignore name="tracker"/>
+		<ignore name="tracker-miners"/>
+		<ignore name="digikam"/>
+		<ignore name="k3b"/>
+		<ignore name="kipi-plugins"/>
+		<ignore name="krusader"/>
+		<ignore name="ktorrent"/>
+		<ignore name="initial-setup"/>
+	</packages>
+</image>

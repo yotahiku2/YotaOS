@@ -1,0 +1,8 @@
+<image>
+	<profiles>
+		<profile name="YotaOS-Desktop-Live" description="YotaOS KDE Plasma Live ISO">
+			<requires profile="YotaOS-Desktop"/>
+			<requires profile="LiveInstall"/>
+		</profile>
+	</profiles>
+</image>
