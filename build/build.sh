@@ -45,7 +45,8 @@ echo
 echo "==> Build finished"
 echo "==> Copying ISO to YotaOS output directory"
 
-ISO="$(find "$WORK_OUTPUT" -maxdepth 1 -type f -name '*.iso' | head -n 1)"
+ISO="$(find "${WORK_OUTPUT}-build" "$WORK_OUTPUT" \
+    -maxdepth 1 -type f -name '*.iso' 2>/dev/null | head -n 1)"
 
 if [[ -z "$ISO" ]]; then
     echo "ERROR: Build completed but no ISO was found."
