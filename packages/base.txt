@@ -1,0 +1,40 @@
+# YotaOS Base Package Manifest
+#
+# Keep the default installation small.
+# Packages belong here only when they provide functionality
+# expected from a normal YotaOS installation.
+
+[desktop]
+plasma-desktop
+plasma-workspace
+kwin
+sddm
+dolphin
+konsole
+
+[network]
+NetworkManager
+
+[audio]
+pipewire
+wireplumber
+
+[bluetooth]
+bluez
+
+[applications]
+firefox
+kate
+
+[utilities]
+git
+curl
+wget
+unzip
+zip
+
+# Optional YotaOS profiles will be defined separately:
+# yota-dev
+# yota-gaming
+# yota-security
+# yota-media
