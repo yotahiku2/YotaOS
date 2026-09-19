@@ -53,6 +53,11 @@ else:
     print("==> Added YotaOS includes to Fedora.kiwi")
 PY
 
+echo "==> Installing YotaOS GRUB template"
+
+cp "$YOTA_DIR/grub-x86.cfg.iso-template" \
+   "$UPSTREAM_DIR/grub-x86.cfg.iso-template"
+
 echo "==> Installing YotaOS branding configuration"
 
 cp "$YOTA_DIR/config/branding.sh" \

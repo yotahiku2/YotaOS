@@ -1,0 +1,15 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "YotaOS Project"
+            }
+        ],
+        "Category": "",
+        "Description": "YotaOS desktop experience",
+        "Id": "org.yotaos.desktop",
+        "License": "GPL-2.0-or-later",
+        "Name": "YotaOS"
+    }
+}

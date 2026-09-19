@@ -1,22 +1,55 @@
-Window.SetBackgroundTopColor(0.008, 0.008, 0.015);
-Window.SetBackgroundBottomColor(0.015, 0.010, 0.025);
+# YotaOS Plymouth theme
 
-logo.image = Image("yotaos.png");
-logo.sprite = Sprite(logo.image);
+Window.SetBackgroundTopColor(0.025, 0.030, 0.050);
+Window.SetBackgroundBottomColor(0.010, 0.012, 0.022);
 
-logo.sprite.SetX(
-    Window.GetWidth() / 2 -
-    logo.image.GetWidth() / 2
+fox.image = Image("yotaos-fox.png");
+
+# Scale the fox relative to the screen width.
+target_width = Window.GetWidth() * 0.22;
+
+if (target_width < 180)
+  target_width = 180;
+
+if (target_width > 360)
+  target_width = 360;
+
+scale = target_width / fox.image.GetWidth();
+
+fox.image = fox.image.Scale(
+    target_width,
+    fox.image.GetHeight() * scale
 );
 
-logo.sprite.SetY(
-    Window.GetHeight() / 2 -
-    logo.image.GetHeight() / 2
-);
+fox.sprite = Sprite(fox.image);
+
+fox.x = Window.GetX() + Window.GetWidth() / 2 - fox.image.GetWidth() / 2;
+fox.y = Window.GetY() + Window.GetHeight() / 2 - fox.image.GetHeight() / 2;
+
+fox.sprite.SetPosition(fox.x, fox.y, 10);
+
+# Subtle breathing animation.
+# Uses the same refresh-counter technique as Fedora's official script theme.
+fox.opacity_angle = 0;
 
 fun refresh_callback ()
 {
-    logo.sprite.SetOpacity(0.82 + Math.Sin(Plymouth.GetTime() * 2.0) * 0.18);
+    fox.opacity_angle += ((2 * 3.14) / 50) * 0.35;
+
+    min_opacity = 0.82;
+
+    opacity = (Math.Cos(fox.opacity_angle) + 1) / 2;
+    opacity *= 1 - min_opacity;
+    opacity += min_opacity;
+
+    fox.sprite.SetOpacity(opacity);
 }
 
 Plymouth.SetRefreshFunction(refresh_callback);
+
+fun quit_callback ()
+{
+    fox.sprite.SetOpacity(1);
+}
+
+Plymouth.SetQuitFunction(quit_callback);
