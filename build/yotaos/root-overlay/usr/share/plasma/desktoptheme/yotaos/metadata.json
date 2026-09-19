@@ -1,0 +1,16 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "YotaOS"
+            }
+        ],
+        "Description": "YotaOS desktop theme",
+        "EnabledByDefault": true,
+        "Id": "yotaos",
+        "License": "LGPL",
+        "Name": "YotaOS",
+        "Version": "0.2-dev"
+    },
+    "X-Plasma-API": "5.0"
+}

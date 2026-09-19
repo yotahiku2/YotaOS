@@ -10,7 +10,7 @@ YotaOS is a custom Linux distribution focused on:
 
 ## Status
 
-Version: 0.1-dev
+Version: 0.2-dev
 Base: Fedora
 Architecture: x86_64
 

@@ -5,6 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 UPSTREAM_DIR="$SCRIPT_DIR/upstream"
 YOTA_DIR="$SCRIPT_DIR/yotaos"
 
+source "$SCRIPT_DIR/version.conf"
+
 if [[ ! -f "$UPSTREAM_DIR/Fedora.kiwi" ]]; then
     echo "ERROR: Fedora upstream tree is missing."
     echo "Run: ./build/prepare-upstream.sh"
@@ -27,6 +29,16 @@ echo "==> Installing YotaOS root overlay"
 mkdir -p "$UPSTREAM_DIR/root"
 
 cp -a "$YOTA_DIR/root-overlay/." "$UPSTREAM_DIR/root/"
+
+echo "==> Stamping YotaOS version: $YOTAOS_VERSION"
+
+sed -i     -e "s/^VERSION=.*/VERSION=$YOTAOS_VERSION/"     "$UPSTREAM_DIR/root/usr/share/yotaos/yotaos.conf"
+
+printf '%s\n' "YotaOS $YOTAOS_VERSION"     > "$UPSTREAM_DIR/root/etc/yotaos-release"
+
+sed -i     -e "s/^VERSION=.*/VERSION=\"$YOTAOS_VERSION\"/"     -e "s/^VERSION_ID=.*/VERSION_ID=\"$YOTAOS_VERSION_ID\"/"     -e "s/^PRETTY_NAME=.*/PRETTY_NAME=\"YotaOS $YOTAOS_VERSION\"/"     "$UPSTREAM_DIR/root/usr/lib/os-release"
+
+sed -i     -e "s/^Comment=YotaOS .*/Comment=YotaOS $YOTAOS_VERSION/"     "$UPSTREAM_DIR/root/usr/share/plasma/plasma-welcome/intro-customization.desktop"
 
 # Add our components to Fedora.kiwi exactly once.
 python3 - "$UPSTREAM_DIR/Fedora.kiwi" <<'PY'

@@ -1,0 +1,8 @@
+[Wallpaper]
+defaultWallpaperTheme=YotaOS
+defaultFileSuffix=.png
+defaultWidth=3344
+defaultHeight=1882
+
+[AdaptiveTransparency]
+enabled=true

@@ -1,0 +1,16 @@
+NAME="YotaOS"
+VERSION="0.2-dev"
+RELEASE_TYPE=development
+ID=yotaos
+ID_LIKE="fedora"
+VERSION_ID="0.2"
+PRETTY_NAME="YotaOS 0.2-dev"
+ANSI_COLOR="0;38;2;0;255;170"
+LOGO=yotaos-fox
+DEFAULT_HOSTNAME=yotaos
+HOME_URL="https://github.com/yotahiku2/YotaOS"
+DOCUMENTATION_URL="https://github.com/yotahiku2/YotaOS"
+BUG_REPORT_URL="https://github.com/yotahiku2/YotaOS/issues"
+YOTAOS_BASE="Fedora Linux"
+YOTAOS_BASE_ID="fedora"
+YOTAOS_BASE_VERSION="44"

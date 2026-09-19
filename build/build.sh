@@ -5,14 +5,33 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 source "$SCRIPT_DIR/upstream.conf"
+source "$SCRIPT_DIR/version.conf"
+
+# Authenticate sudo once before the long KIWI build and keep the
+# credential timestamp alive until this script exits.
+sudo -v
+
+while true; do
+    sudo -n true
+    sleep 60
+done 2>/dev/null &
+SUDO_KEEPALIVE_PID=$!
+
+cleanup() {
+    kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true
+}
+trap cleanup EXIT
 
 OUTPUT_DIR="$SCRIPT_DIR/output"
 WORK_OUTPUT="/var/tmp/yotaos-build"
+BUILD_OUTPUT="${WORK_OUTPUT}-build"
+DEST="$OUTPUT_DIR/YotaOS-${YOTAOS_VERSION}-x86_64.iso"
 
 echo "========================================"
 echo "              YotaOS Builder"
 echo "========================================"
 echo
+echo "YotaOS version : $YOTAOS_VERSION"
 echo "Fedora release : $FEDORA_RELEASE"
 echo "Fedora revision: $FEDORA_REVISION"
 echo "Architecture   : x86_64"
@@ -28,8 +47,9 @@ echo "==> [2/4] Applying YotaOS definitions"
 
 echo
 echo "==> [3/4] Cleaning previous build"
-sudo rm -rf "$WORK_OUTPUT" "$WORK_OUTPUT-build"
+sudo rm -rf "$WORK_OUTPUT" "$BUILD_OUTPUT"
 mkdir -p "$OUTPUT_DIR"
+rm -f "$DEST"
 
 echo
 echo "==> [4/4] Building YotaOS ISO"
@@ -43,25 +63,41 @@ sudo ./kiwi-build \
 
 echo
 echo "==> Build finished"
-echo "==> Copying ISO to YotaOS output directory"
 
-ISO="$(find "${WORK_OUTPUT}-build" "$WORK_OUTPUT" \
-    -maxdepth 1 -type f -name '*.iso' 2>/dev/null | head -n 1)"
+ISO="$BUILD_OUTPUT/Fedora.x86_64-${FEDORA_RELEASE}.iso"
 
-if [[ -z "$ISO" ]]; then
-    echo "ERROR: Build completed but no ISO was found."
+if [[ ! -f "$ISO" ]]; then
+    echo "ERROR: Expected KIWI ISO was not found:"
+    echo "       $ISO"
+    echo
+    echo "Files produced by KIWI:"
+    find "$BUILD_OUTPUT" -maxdepth 1 -type f -printf '  %p\n' 2>/dev/null || true
     exit 1
 fi
 
-DEST="$OUTPUT_DIR/YotaOS-0.1-dev-x86_64.iso"
+echo "==> Copying fresh ISO"
+echo "    Source: $ISO"
+echo "    Dest  : $DEST"
 
-sudo cp "$ISO" "$DEST"
+sudo cp -f "$ISO" "$DEST"
 sudo chown "$USER:$(id -gn)" "$DEST"
+sync
+
+echo
+echo "==> Verifying copied ISO"
+SOURCE_SHA256="$(sha256sum "$ISO" | awk '{print $1}')"
+DEST_SHA256="$(sha256sum "$DEST" | awk '{print $1}')"
+
+if [[ "$SOURCE_SHA256" != "$DEST_SHA256" ]]; then
+    echo "ERROR: Copied ISO does not match KIWI output."
+    exit 1
+fi
 
 echo
 echo "========================================"
 echo "          YotaOS BUILD COMPLETE"
 echo "========================================"
 echo
-echo "ISO: $DEST"
-ls -lh "$DEST"
+echo "ISO    : $DEST"
+echo "SHA256 : $DEST_SHA256"
+ls -lh --time-style=long-iso "$DEST"
