@@ -34,10 +34,10 @@ The earlier 25-package profile has reached a YotaOS VM; installation was explici
 The Fedora package index lists these new packages for Fedora 44, but the local package repository configuration can differ. A previous host-side query failed to find `nmap` even though Fedora's package index lists it for Fedora 44. **Before another long build, run on the Fedora host**:
 
 ```bash
-python3 scripts/check-security-packages.py
+python3 scripts/check-security-packages.py --resolve
 ```
 
-This is a read-only check of available names in the host's enabled DNF repositories. A successful check still does not prove that KIWI's internal dependency resolution will succeed. If a package is missing, resolve the repository difference before starting the ISO build.
+The check first verifies exact Fedora RPM names and then asks DNF5 to solve all security packages together using `install --store` without installing or downloading RPMs. GitHub Actions also runs it inside an official Fedora 44 container. A successful Fedora transaction plan still does not prove KIWI's internal repositories or the installed GUI/CLI tools behave correctly. If a package is missing, resolve the repository difference before starting the ISO build.
 
 ## Nested menu organization
 

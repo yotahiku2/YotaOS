@@ -1,0 +1,33 @@
+name: Fedora 44 security package preflight
+
+on:
+  pull_request:
+    paths:
+      - "build/yotaos/components/security.xml"
+      - "scripts/check-security-packages.py"
+      - ".github/workflows/security-packages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  resolve-security-packages:
+    name: Check Fedora 44 RPM availability and dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: fedora:44
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Confirm Fedora release and architecture
+        run: |
+          cat /etc/fedora-release
+          uname -m
+          command -v dnf
+          command -v python3
+
+      - name: Query security packages and resolve dependencies
+        run: python3 scripts/check-security-packages.py --resolve

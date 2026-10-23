@@ -26,7 +26,15 @@ python3 scripts/validate-source.py
 bash -n build/build.sh build/prepare-upstream.sh build/apply-yotaos.sh
 ```
 
-GitHub Actions runs equivalent quick source checks on pull requests. **These checks do not install packages or boot the image.**
+GitHub Actions runs quick source checks. A separate **Fedora 44 security package preflight** uses Fedora's official container and DNF5 to check package availability and solve an install plan without installing the security RPMs. Neither check boots YotaOS or proves KIWI will use identical repositories.
+
+Before a full build on your Fedora host, run:
+
+```bash
+python3 scripts/check-security-packages.py --resolve
+```
+
+This checks all security packages together in a disposable DNF5 transaction plan. It does not remove existing files or install the packages.
 
 ## Full ISO build
 
