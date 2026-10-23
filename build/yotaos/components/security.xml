@@ -1,0 +1,52 @@
+<image>
+    <profiles>
+        <profile name="YotaOS-Security"
+                 description="YotaOS Cybersecurity Toolkit">
+            <requires profile="YotaOS-Desktop"/>
+        </profile>
+    </profiles>
+
+    <packages type="image"
+              profiles="YotaOS-Security">
+
+        <!-- Network analysis and reconnaissance -->
+        <package name="wireshark"/>
+        <package name="wireshark-cli"/>
+        <package name="tcpdump"/>
+        <package name="nmap-ncat"/>
+        <package name="socat"/>
+        <package name="traceroute"/>
+        <package name="whois"/>
+        <package name="python3-scapy"/>
+
+        <!-- Web application security -->
+        <package name="nuclei"/>
+
+        <!-- Password and authentication auditing -->
+        <package name="hashcat"/>
+        <package name="john"/>
+        <package name="hydra"/>
+
+        <!-- Wireless security -->
+        <package name="aircrack-ng"/>
+        <package name="kismet"/>
+
+        <!-- Digital forensics -->
+        <package name="sleuthkit"/>
+        <package name="foremost"/>
+        <package name="testdisk"/>
+        <package name="binwalk"/>
+
+        <!-- Reverse engineering and debugging -->
+        <package name="radare2"/>
+        <package name="gdb"/>
+        <package name="strace"/>
+
+        <!-- Development and scripting -->
+        <package name="git"/>
+        <package name="gcc"/>
+        <package name="make"/>
+        <package name="jq"/>
+
+    </packages>
+</image>

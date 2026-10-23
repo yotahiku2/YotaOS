@@ -24,6 +24,9 @@ cp "$YOTA_DIR/components/desktop.xml" \
 cp "$YOTA_DIR/live.xml" \
    "$UPSTREAM_DIR/yotaos/live.xml"
 
+cp "$YOTA_DIR/components/security.xml" \
+   "$UPSTREAM_DIR/yotaos/security.xml"
+
 echo "==> Installing YotaOS root overlay"
 
 mkdir -p "$UPSTREAM_DIR/root"
@@ -53,6 +56,7 @@ marker = '\t<include from="this://./components/liveinstall.xml"/>'
 addition = (
     '\t<include from="this://./yotaos/desktop.xml"/>\n'
     '\t<include from="this://./yotaos/live.xml"/>\n'
+    '\t<include from="this://./yotaos/security.xml"/>\n'
 )
 
 if addition in text:
