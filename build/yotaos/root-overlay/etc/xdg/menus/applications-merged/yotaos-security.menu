@@ -2,7 +2,7 @@
 <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN" "http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
 <Menu>
   <Name>Applications</Name>
-  <!-- Keep the YotaOS category ahead of the stock Plasma menus. -->
+  <!-- Keep YotaOS Security first without hiding other applications. -->
   <Layout>
     <Menuname>YotaOS Security</Menuname>
     <Merge type="menus"/>
@@ -12,18 +12,32 @@
   <Menu>
     <Name>YotaOS Security</Name>
     <Directory>yotaos-security.directory</Directory>
+    <Include>
+      <Filename>yotaos-security-terminal.desktop</Filename>
+    </Include>
+    <Menu>
+      <Name>Reconnaissance</Name>
+      <Directory>yotaos-security-recon.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-nmap.desktop</Filename>
+        <Filename>yotaos-security-arp-scan.desktop</Filename>
+        <Filename>yotaos-security-masscan.desktop</Filename>
+        <Filename>yotaos-security-traceroute.desktop</Filename>
+        <Filename>yotaos-security-whois.desktop</Filename>
+      </Include>
+    </Menu>
     <Menu>
       <Name>Network Analysis</Name>
       <Directory>yotaos-security-network.directory</Directory>
       <Include>
         <Filename>yotaos-security-wireshark.desktop</Filename>
+        <Filename>yotaos-security-etherape.desktop</Filename>
         <Filename>yotaos-security-tshark.desktop</Filename>
         <Filename>yotaos-security-tcpdump.desktop</Filename>
         <Filename>yotaos-security-ncat.desktop</Filename>
         <Filename>yotaos-security-scapy.desktop</Filename>
         <Filename>yotaos-security-socat.desktop</Filename>
-        <Filename>yotaos-security-traceroute.desktop</Filename>
-        <Filename>yotaos-security-whois.desktop</Filename>
+        <Filename>yotaos-security-ettercap.desktop</Filename>
       </Include>
     </Menu>
     <Menu>
@@ -31,6 +45,8 @@
       <Directory>yotaos-security-web.directory</Directory>
       <Include>
         <Filename>yotaos-security-nuclei.desktop</Filename>
+        <Filename>yotaos-security-gobuster.desktop</Filename>
+        <Filename>yotaos-security-whatweb.desktop</Filename>
       </Include>
     </Menu>
     <Menu>
@@ -38,7 +54,11 @@
       <Directory>yotaos-security-wireless.directory</Directory>
       <Include>
         <Filename>yotaos-security-aircrack-ng.desktop</Filename>
+        <Filename>yotaos-security-airodump-ng.desktop</Filename>
+        <Filename>yotaos-security-airmon-ng.desktop</Filename>
+        <Filename>yotaos-security-aireplay-ng.desktop</Filename>
         <Filename>yotaos-security-kismet.desktop</Filename>
+        <Filename>yotaos-security-hcxpcapngtool.desktop</Filename>
       </Include>
     </Menu>
     <Menu>
@@ -48,6 +68,8 @@
         <Filename>yotaos-security-hashcat.desktop</Filename>
         <Filename>yotaos-security-john.desktop</Filename>
         <Filename>yotaos-security-hydra.desktop</Filename>
+        <Filename>yotaos-security-xhydra.desktop</Filename>
+        <Filename>yotaos-security-medusa.desktop</Filename>
       </Include>
     </Menu>
     <Menu>
@@ -67,6 +89,15 @@
         <Filename>yotaos-security-r2.desktop</Filename>
         <Filename>yotaos-security-gdb.desktop</Filename>
         <Filename>yotaos-security-strace.desktop</Filename>
+      </Include>
+    </Menu>
+    <Menu>
+      <Name>Host Auditing</Name>
+      <Directory>yotaos-security-audit.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-lynis.desktop</Filename>
+        <Filename>yotaos-security-chkrootkit.desktop</Filename>
+        <Filename>yotaos-security-rkhunter.desktop</Filename>
       </Include>
     </Menu>
   </Menu>

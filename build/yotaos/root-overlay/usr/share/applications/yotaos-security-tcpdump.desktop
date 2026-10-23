@@ -2,7 +2,7 @@
 Type=Application
 Name=tcpdump
 Comment=Command-line packet capture
-Exec=konsole -e /usr/libexec/yotaos/security-tool tcpdump
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool tcpdump
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

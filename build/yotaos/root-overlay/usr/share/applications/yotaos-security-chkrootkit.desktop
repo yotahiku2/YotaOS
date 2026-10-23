@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=chkrootkit
+Comment=Check for known rootkit indicators
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool chkrootkit
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

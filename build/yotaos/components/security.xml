@@ -13,6 +13,11 @@
         <package name="wireshark"/>
         <package name="wireshark-cli"/>
         <package name="tcpdump"/>
+        <package name="nmap"/>
+        <package name="arp-scan"/>
+        <package name="masscan"/>
+        <package name="etherape"/>
+        <package name="ettercap"/>
         <package name="nmap-ncat"/>
         <package name="socat"/>
         <package name="traceroute"/>
@@ -20,15 +25,20 @@
         <package name="python3-scapy"/>
 
         <!-- Web application security -->
+        <package name="gobuster"/>
+        <package name="whatweb"/>
         <package name="nuclei"/>
 
         <!-- Password and authentication auditing -->
         <package name="hashcat"/>
         <package name="john"/>
+        <package name="hydra-frontend"/>
+        <package name="medusa"/>
         <package name="hydra"/>
 
         <!-- Wireless security -->
         <package name="aircrack-ng"/>
+        <package name="hcxtools"/>
         <package name="kismet"/>
 
         <!-- Digital forensics -->
@@ -41,6 +51,11 @@
         <package name="radare2"/>
         <package name="gdb"/>
         <package name="strace"/>
+
+        <!-- Local system auditing -->
+        <package name="lynis"/>
+        <package name="chkrootkit"/>
+        <package name="rkhunter"/>
 
         <!-- Development and scripting -->
         <package name="git"/>

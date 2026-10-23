@@ -2,7 +2,7 @@
 Type=Application
 Name=Scapy
 Comment=Python packet toolkit
-Exec=konsole -e /usr/libexec/yotaos/security-tool scapy
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool scapy
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

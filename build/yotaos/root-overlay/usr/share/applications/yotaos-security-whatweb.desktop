@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=WhatWeb
+Comment=Website technology fingerprinting
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool whatweb
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

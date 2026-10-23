@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Masscan
+Comment=High-speed port scanner
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool masscan
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

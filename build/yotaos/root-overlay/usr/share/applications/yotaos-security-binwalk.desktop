@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=Binwalk
-Comment=Firmware and binary analysis
-Exec=konsole -e /usr/libexec/yotaos/security-tool binwalk
+Comment=Firmware and binary inspection
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool binwalk
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

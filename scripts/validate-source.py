@@ -77,63 +77,92 @@ def main() -> None:
     require((ROOT / f"{look}/contents/splash/images/yotaos-fox.png").is_file(),
             "YotaOS fox splash asset is missing")
 
-    # KDE's applications-merged fragment must reference actual desktop entries.
+    # Validate the XDG menu and its launchers without requiring KDE in CI.
     overlay = ROOT / "build/yotaos/root-overlay"
-    menu_path = overlay / "etc/xdg/menus/applications-merged/yotaos-security.menu"
-    menu = ET.parse(menu_path).getroot()
+    menu = ET.parse(overlay / "etc/xdg/menus/applications-merged/yotaos-security.menu").getroot()
     require(menu.tag == "Menu" and menu.findtext("Name") == "Applications",
-            "Invalid application-menu fragment root")
-    layout_order = [node.text for node in menu.findall("./Layout/Menuname")]
-    require(layout_order[:1] == ["YotaOS Security"],
-            "YotaOS Security should be the first menu category")
-    require(len(menu.findall("./Layout/Merge")) == 2,
-            "Root layout must preserve other application categories")
+            "Invalid application-menu root")
+    require([m.text for m in menu.findall("./Layout/Menuname")][:1] ==
+            ["YotaOS Security"], "Security category should appear first")
+
+    section = menu.find("./Menu")
+    require(section is not None and section.findtext("Name") == "YotaOS Security",
+            "YotaOS Security category is missing")
+    directories = overlay / "usr/share/desktop-directories"
+    applications = overlay / "usr/share/applications"
+    require((directories / section.findtext("Directory")).is_file(),
+            "Security menu directory is missing")
+
+    groups = section.findall("./Menu")
+    require([g.findtext("Name") for g in groups] == [
+        "Reconnaissance", "Network Analysis", "Web Testing", "Wireless",
+        "Password Auditing", "Forensics", "Reverse Engineering",
+        "Host Auditing"
+    ], "Unexpected Security menu categories or category order")
+
+    gui_launchers = {"wireshark", "etherape", "xhydra"}
+    items = []
+    cli_items = []
+    for group in groups:
+        folder = group.findtext("Directory")
+        require(folder and (directories / folder).is_file(),
+                f"Category directory missing: {group.findtext('Name')}")
+        for node in group.findall("./Include/Filename"):
+            filename = node.text
+            require(filename and filename.startswith("yotaos-security-")
+                    and filename.endswith(".desktop"), f"Bad launcher: {filename}")
+            launcher = applications / filename
+            require(launcher.is_file(), f"Missing launcher: {filename}")
+            data = launcher.read_text(encoding="utf-8")
+            require("[Desktop Entry]" in data and "Type=Application" in data
+                    and "Exec=" in data and "TryExec=" in data,
+                    f"Incomplete desktop entry: {filename}")
+            shortname = filename.removeprefix("yotaos-security-").removesuffix(".desktop")
+            if shortname in gui_launchers:
+                require(f"Exec={shortname}\n" in data and
+                        f"TryExec={shortname}\n" in data,
+                        f"GUI application launcher is incorrect: {filename}")
+            else:
+                require("Exec=konsole --profile YotaOS-Security "
+                        f"-e /usr/libexec/yotaos/security-tool {shortname}\n" in data,
+                        f"CLI application launcher is incorrect: {filename}")
+                cli_items.append(shortname)
+            items.append(filename)
+
+    terminal_file = "yotaos-security-terminal.desktop"
+    require([node.text for node in section.findall("./Include/Filename")] ==
+            [terminal_file], "Security terminal shortcut missing")
+    terminal = applications / terminal_file
+    require(terminal.is_file()
+            and "Exec=konsole --profile YotaOS-Security\n" in
+            terminal.read_text(encoding="utf-8"),
+            "Security terminal launcher is invalid")
+    require(len(items) == 37 and len(set(items)) == len(items),
+            "Expected 37 distinct security tool launchers")
+    require(set(items + [terminal_file]) ==
+            {p.name for p in applications.glob("yotaos-security-*.desktop")},
+            "Unlisted or missing Security desktop file")
+
+    helper = overlay / "usr/libexec/yotaos/security-tool"
+    require(helper.is_file() and bool(helper.stat().st_mode & 0o111),
+            "Security terminal helper must be executable")
+    helper_text = helper.read_text(encoding="utf-8")
+    for name in cli_items:
+        require(f'{name}) tool="{name}";' in helper_text,
+                f"Security terminal helper does not recognize {name}")
+    profile = overlay / "usr/share/konsole/YotaOS-Security.profile"
+    require(profile.is_file() and "ColorScheme=YotaOS" in
+            profile.read_text(encoding="utf-8"),
+            "YotaOS Security Konsole profile missing")
     plasma_layout = read("build/yotaos/root-overlay/usr/share/plasma/"
                          "look-and-feel/org.yotaos.desktop/contents/"
                          "layouts/org.kde.plasma.desktop-layout.js")
     require('yotaLauncher.writeConfig("highlightNewlyInstalledApps", false)'
             in plasma_layout, "Default Kickoff should disable New badges")
-    section = menu.find("./Menu")
-    require(section is not None and section.findtext("Name") == "YotaOS Security",
-            "YotaOS Security menu is missing")
-    directories = overlay / "usr/share/desktop-directories"
-    launchers = overlay / "usr/share/applications"
-    top_directory = section.findtext("Directory")
-    require(top_directory and (directories / top_directory).is_file(),
-            "Top-level Security menu directory is missing")
-    items = []
-    groups = section.findall("./Menu")
-    require(len(groups) == 6, "Expected six Security menu categories")
-    for group in groups:
-        folder = group.findtext("Directory")
-        require(folder and (directories / folder).is_file(),
-                f"Missing directory for {group.findtext('Name')}")
-        for item in group.findall("./Include/Filename"):
-            name = item.text
-            require(name and name.startswith("yotaos-security-")
-                    and name.endswith(".desktop"), f"Invalid launcher: {name}")
-            require((launchers / name).is_file(), f"Missing launcher: {name}")
-            data = (launchers / name).read_text(encoding="utf-8")
-            require("[Desktop Entry]" in data and "Type=Application" in data,
-                    f"Invalid desktop entry: {name}")
-            require("Exec=" in data and "TryExec=" in data,
-                    f"Missing executable or availability check: {name}")
-            if name != "yotaos-security-wireshark.desktop":
-                require("Exec=konsole -e /usr/libexec/yotaos/security-tool "
-                        in data, f"Wrong terminal launcher: {name}")
-            items.append(name)
-    require(len(items) == 21 and len(set(items)) == len(items),
-            "Security menu must include 21 distinct launchers")
-    require(set(items) == {p.name for p in
-            launchers.glob("yotaos-security-*.desktop")},
-            "Unreferenced YotaOS Security launcher found")
-    helper = overlay / "usr/libexec/yotaos/security-tool"
-    require(helper.is_file() and bool(helper.stat().st_mode & 0o111),
-            "Security launcher helper must be executable")
 
     print(f"PASS: {len(component_paths)} KIWI XML files, "
           f"{len(names)} security packages, profile wiring, "
-          f"installer, splash, and {len(items)} Security menu launchers")
+          f"installer, splash, and {len(items) + 1} Security menu launchers")
     print("NOTE: This does not validate Fedora package resolution or ISO runtime.")
 
 

@@ -2,7 +2,7 @@
 Type=Application
 Name=Foremost
 Comment=File carving
-Exec=konsole -e /usr/libexec/yotaos/security-tool foremost
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool foremost
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

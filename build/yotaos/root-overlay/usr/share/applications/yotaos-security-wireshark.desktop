@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Wireshark
-Comment=Packet analyzer (GUI)
+Comment=Graphical packet analyzer
 Exec=wireshark
 TryExec=wireshark
 Icon=wireshark

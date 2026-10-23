@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Medusa
+Comment=Network authentication auditing
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool medusa
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

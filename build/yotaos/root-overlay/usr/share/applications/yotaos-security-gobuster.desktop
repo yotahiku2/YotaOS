@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Gobuster
+Comment=Web directory and DNS enumeration
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool gobuster
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

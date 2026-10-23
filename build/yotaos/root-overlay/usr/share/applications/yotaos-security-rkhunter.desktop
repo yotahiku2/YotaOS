@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Rootkit Hunter
+Comment=Local host security checks
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool rkhunter
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

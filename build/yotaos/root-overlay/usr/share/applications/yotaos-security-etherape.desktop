@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=EtherApe
+Comment=Graphical network traffic monitor
+Exec=etherape
+TryExec=etherape
+Icon=applications-internet
+Terminal=false
+StartupNotify=false

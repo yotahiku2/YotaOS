@@ -2,7 +2,7 @@
 Type=Application
 Name=TestDisk
 Comment=Disk recovery utility
-Exec=konsole -e /usr/libexec/yotaos/security-tool testdisk
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool testdisk
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false
