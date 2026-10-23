@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=ImHex
+Comment=Graphical binary inspection and hex editor
+Exec=imhex
+TryExec=imhex
+Icon=applications-development
+Terminal=false
+StartupNotify=true

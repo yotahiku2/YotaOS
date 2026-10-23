@@ -22,11 +22,10 @@ panel.minimumLength = yotaPanelWidth
 panel.maximumLength = yotaPanelWidth
 
 // YotaOS panel widgets
-var yotaLauncher = panel.addWidget("org.kde.plasma.kickoff")
+// Kicker supports nested Security submenus without flattening them.
+var yotaLauncher = panel.addWidget("org.kde.plasma.kicker")
 yotaLauncher.currentConfigGroup = ["General"]
 yotaLauncher.writeConfig("icon", "/usr/share/yotaos/branding/yotaos-fox.png")
-// A fresh YotaOS image should not mark preinstalled tools as "New!".
-yotaLauncher.writeConfig("highlightNewlyInstalledApps", false)
 panel.addWidget("org.kde.plasma.icontasks")
 panel.addWidget("org.kde.plasma.marginsseparator")
 panel.addWidget("org.kde.plasma.systemtray")

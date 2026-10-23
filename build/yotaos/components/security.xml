@@ -32,6 +32,8 @@
         <!-- Password and authentication auditing -->
         <package name="hashcat"/>
         <package name="john"/>
+        <!-- Fedora-packaged graphical password auditing -->
+        <package name="ophcrack"/>
         <package name="hydra-frontend"/>
         <package name="medusa"/>
         <package name="hydra"/>
@@ -49,6 +51,9 @@
 
         <!-- Reverse engineering and debugging -->
         <package name="radare2"/>
+        <!-- Graphical reverse engineering and binary inspection -->
+        <package name="iaito"/>
+        <package name="imhex"/>
         <package name="gdb"/>
         <package name="strace"/>
 

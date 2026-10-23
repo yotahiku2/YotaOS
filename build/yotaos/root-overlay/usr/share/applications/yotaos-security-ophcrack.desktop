@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Ophcrack
+Comment=Graphical audit of Windows password hashes
+Exec=ophcrack
+TryExec=ophcrack
+Icon=dialog-password
+Terminal=false
+StartupNotify=true

@@ -15,7 +15,7 @@ The fox is the YotaOS mark. The older geometric logo can stay in the artwork dir
 
 Use a dark navy desktop with cyan and purple highlights. Keep the artwork restrained; the desktop shouldn't be covered in decorative effects. The panel is centered at the bottom, 48 px high, about two-thirds of the screen wide, and uses adaptive opacity.
 
-Plasma stays familiar: Kickoff, task manager, tray, clock, and show-desktop are all standard widgets. Styling them is preferable to inventing replacements.
+Plasma stays familiar: Kicker (Application Menu), task manager, tray, clock, and show-desktop are all standard widgets. Kicker is the deliberate choice because it supports the nested Security menu. Styling the existing widgets is preferable to inventing replacements.
 
 The terminal has a dark color scheme and a green-accented two-line prompt. It shows the current directory and Git branch when applicable. Commands and output should remain easy to read; the brand color isn't a reason to color everything green.
 
