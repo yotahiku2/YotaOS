@@ -10,7 +10,7 @@
         "Id": "yotaos",
         "License": "LGPL",
         "Name": "YotaOS",
-        "Version": "0.2-dev"
+        "Version": "0.3"
     },
     "X-Plasma-API": "5.0"
 }

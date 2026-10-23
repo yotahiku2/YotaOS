@@ -50,7 +50,7 @@ The builder:
 4. Builds the `YotaOS-Desktop-Live` KIWI profile.
 5. Copies the verified ISO into `build/output/YotaOS-<version>-x86_64.iso`.
 
-The active version and output path come from `build/version.conf`. Do not rename an old ISO and treat it as a newly built version: the version is also stamped inside the image.
+The active version and output path come from `build/version.conf`. The next YotaOS development/test build is version **0.3**, so its expected output is `build/output/YotaOS-0.3-x86_64.iso`. Its `/usr/lib/os-release`, `/etc/yotaos-release`, theme metadata, and other identity files must also say **0.3**. `RELEASE_TYPE=development` remains set until the release is validated. Do not rename an old ISO and treat it as a newly built version.
 
 **Caution:** `build/build.sh` deletes its previous build work directories under `/var/tmp/yotaos-build` (and its KIWI build output counterpart) and replaces the same-version ISO at the destination. Keep files you care about elsewhere.
 

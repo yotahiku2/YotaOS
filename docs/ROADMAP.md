@@ -16,7 +16,7 @@ YotaOS is experimental; milestone names describe **development goals**, not fini
 - [ ] Verify installer shortcut, KDE live setup, and fox splash in a **fresh** ISO/VM
 - [ ] Complete a disposable VM installation and reboot
 
-## 0.3-dev — Security edition (in progress)
+## 0.3 — Security edition (development build; ISO/VM testing pending)
 
 - [x] Add a separate YotaOS-Security KIWI profile
 - [x] Integrate 25 security/developer package entries into the live-profile source
