@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=TShark
+Comment=Packet analysis in a terminal
+Exec=konsole -e /usr/libexec/yotaos/security-tool tshark
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

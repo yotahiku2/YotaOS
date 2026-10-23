@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Ncat
+Comment=Network connection utility
+Exec=konsole -e /usr/libexec/yotaos/security-tool ncat
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

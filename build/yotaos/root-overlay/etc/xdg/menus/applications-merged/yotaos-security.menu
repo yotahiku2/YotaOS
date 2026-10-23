@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN" "http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
+<Menu>
+  <Name>Applications</Name>
+  <!-- Keep the YotaOS category ahead of the stock Plasma menus. -->
+  <Layout>
+    <Menuname>YotaOS Security</Menuname>
+    <Merge type="menus"/>
+    <Menuname>Applications</Menuname>
+    <Merge type="files"/>
+  </Layout>
+  <Menu>
+    <Name>YotaOS Security</Name>
+    <Directory>yotaos-security.directory</Directory>
+    <Menu>
+      <Name>Network Analysis</Name>
+      <Directory>yotaos-security-network.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-wireshark.desktop</Filename>
+        <Filename>yotaos-security-tshark.desktop</Filename>
+        <Filename>yotaos-security-tcpdump.desktop</Filename>
+        <Filename>yotaos-security-ncat.desktop</Filename>
+        <Filename>yotaos-security-scapy.desktop</Filename>
+        <Filename>yotaos-security-socat.desktop</Filename>
+        <Filename>yotaos-security-traceroute.desktop</Filename>
+        <Filename>yotaos-security-whois.desktop</Filename>
+      </Include>
+    </Menu>
+    <Menu>
+      <Name>Web Testing</Name>
+      <Directory>yotaos-security-web.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-nuclei.desktop</Filename>
+      </Include>
+    </Menu>
+    <Menu>
+      <Name>Wireless</Name>
+      <Directory>yotaos-security-wireless.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-aircrack-ng.desktop</Filename>
+        <Filename>yotaos-security-kismet.desktop</Filename>
+      </Include>
+    </Menu>
+    <Menu>
+      <Name>Password Auditing</Name>
+      <Directory>yotaos-security-passwords.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-hashcat.desktop</Filename>
+        <Filename>yotaos-security-john.desktop</Filename>
+        <Filename>yotaos-security-hydra.desktop</Filename>
+      </Include>
+    </Menu>
+    <Menu>
+      <Name>Forensics</Name>
+      <Directory>yotaos-security-forensics.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-fls.desktop</Filename>
+        <Filename>yotaos-security-foremost.desktop</Filename>
+        <Filename>yotaos-security-testdisk.desktop</Filename>
+        <Filename>yotaos-security-binwalk.desktop</Filename>
+      </Include>
+    </Menu>
+    <Menu>
+      <Name>Reverse Engineering</Name>
+      <Directory>yotaos-security-reversing.directory</Directory>
+      <Include>
+        <Filename>yotaos-security-r2.desktop</Filename>
+        <Filename>yotaos-security-gdb.desktop</Filename>
+        <Filename>yotaos-security-strace.desktop</Filename>
+      </Include>
+    </Menu>
+  </Menu>
+</Menu>

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=whois
+Comment=Domain registration lookup
+Exec=konsole -e /usr/libexec/yotaos/security-tool whois
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

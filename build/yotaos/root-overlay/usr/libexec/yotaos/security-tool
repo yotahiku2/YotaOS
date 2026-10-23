@@ -1,0 +1,45 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+# Give CLI tools a terminal entry point without starting network activity.
+case "${1:-}" in
+    tshark)      tool=tshark;      help="tshark --help" ;;
+    tcpdump)     tool=tcpdump;     help="tcpdump --help" ;;
+    ncat)        tool=ncat;        help="ncat --help" ;;
+    scapy)       tool=scapy;       help="scapy" ;;
+    socat)       tool=socat;       help="socat -h" ;;
+    traceroute)  tool=traceroute;  help="traceroute --help" ;;
+    whois)       tool=whois;       help="whois --help" ;;
+    nuclei)      tool=nuclei;      help="nuclei -h" ;;
+    aircrack-ng) tool=aircrack-ng; help="aircrack-ng --help" ;;
+    kismet)      tool=kismet;      help="kismet --help" ;;
+    hashcat)     tool=hashcat;     help="hashcat --help" ;;
+    john)        tool=john;        help="john --help" ;;
+    hydra)       tool=hydra;       help="hydra -h" ;;
+    fls)         tool=fls;         help="fls -h" ;;
+    foremost)    tool=foremost;    help="foremost -h" ;;
+    testdisk)    tool=testdisk;    help="testdisk" ;;
+    binwalk)     tool=binwalk;     help="binwalk --help" ;;
+    r2)          tool=r2;          help="r2 -h" ;;
+    gdb)         tool=gdb;         help="gdb --help" ;;
+    strace)      tool=strace;      help="strace --help" ;;
+    *)
+        printf 'Unknown YotaOS tool: %s\n' "${1:-<none>}" >&2
+        exit 2
+        ;;
+esac
+
+printf '\n  YotaOS Security | %s\n' "$tool"
+printf '  -----------------------------------\n'
+
+if ! command -v "$tool" >/dev/null 2>&1; then
+    printf '  %s is not installed in this environment.\n\n' "$tool"
+else
+    printf '  Installed: %s\n' "$(command -v "$tool")"
+fi
+
+printf '  To get started, type: %s\n' "$help"
+printf '  Nothing runs until you enter a command.\n'
+printf '  Only test systems you own or are authorized to assess.\n\n'
+
+exec "${SHELL:-/bin/bash}" -i
