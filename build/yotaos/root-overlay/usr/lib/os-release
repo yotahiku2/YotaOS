@@ -1,10 +1,10 @@
 NAME="YotaOS"
-VERSION="0.2-dev"
+VERSION="0.3"
 RELEASE_TYPE=development
 ID=yotaos
 ID_LIKE="fedora"
-VERSION_ID="0.2"
-PRETTY_NAME="YotaOS 0.2-dev"
+VERSION_ID="0.3"
+PRETTY_NAME="YotaOS 0.3"
 ANSI_COLOR="0;38;2;0;255;170"
 LOGO=yotaos-fox
 DEFAULT_HOSTNAME=yotaos

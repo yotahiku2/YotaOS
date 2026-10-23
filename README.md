@@ -14,13 +14,13 @@ YotaOS is **in development**, not ready for regular installation on important ha
 
 | | |
 | --- | --- |
-| Source version | `0.2-dev` |
+| Source version | `0.3` (development, awaiting fresh ISO/VM testing) |
 | Base | Fedora 44, x86_64 |
 | Desktop | KDE Plasma |
 | Image builder | KIWI NG |
 | Security packages | 41 entries in the next KIWI profile (not yet ISO-tested) |
 
-The original 0.2-dev ISO booted successfully in a VM with the custom desktop layout. Since that build, I've changed the live installer setup, Plasma session splash, and security package selection. **Those changes still need a fresh ISO build and install test.**
+The earlier 0.2-dev ISO booted in a VM with the custom desktop layout. The next build is explicitly named **YotaOS 0.3**; it includes the updated installer setup, Plasma splash, Kicker security menu, and expanded security packages. **The 0.3 image still needs a fresh ISO build and installation test before it can be considered validated.**
 
 ## Design decisions
 

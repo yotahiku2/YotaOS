@@ -2,6 +2,7 @@
 """Fast, offline checks for the YotaOS source tree (not an ISO boot test)."""
 
 from pathlib import Path
+import json
 import sys
 import xml.etree.ElementTree as ET
 
@@ -47,6 +48,50 @@ def main() -> None:
     }, "Live image must include Security and LiveInstall")
     require("YotaOS-Desktop" in profiles["YotaOS-Security"],
             "Security profile must inherit the desktop")
+
+    # The ISO output name and the identity displayed inside YotaOS must match.
+    # This catches accidental 0.2 labels before a multi-hour KIWI build.
+    version_vars = dict(
+        line.split("=", 1)
+        for line in read("build/version.conf").splitlines()
+        if "=" in line and not line.lstrip().startswith("#")
+    )
+    version = version_vars.get("YOTAOS_VERSION")
+    version_id = version_vars.get("YOTAOS_VERSION_ID")
+    require(version and version_id, "Missing YotaOS build version variables")
+    require(version.split("-", 1)[0] == version_id,
+            "YotaOS version and version ID are inconsistent")
+
+    os_vars = dict(
+        line.split("=", 1)
+        for line in read("build/yotaos/root-overlay/usr/lib/os-release").splitlines()
+        if "=" in line and not line.lstrip().startswith("#")
+    )
+    require(os_vars.get("VERSION") == f'"{version}"',
+            "YotaOS /usr/lib/os-release VERSION is inconsistent")
+    require(os_vars.get("VERSION_ID") == f'"{version_id}"',
+            "YotaOS /usr/lib/os-release VERSION_ID is inconsistent")
+    require(os_vars.get("PRETTY_NAME") == f'"YotaOS {version}"',
+            "YotaOS /usr/lib/os-release PRETTY_NAME is inconsistent")
+    require(os_vars.get("RELEASE_TYPE") == "development",
+            "Development builds must remain identified as development")
+
+    overlay_root = "build/yotaos/root-overlay"
+    require(read(f"{overlay_root}/etc/yotaos-release").strip() ==
+            f"YotaOS {version}", "YotaOS /etc/yotaos-release is inconsistent")
+    require(f"VERSION={version}" in
+            read(f"{overlay_root}/usr/share/yotaos/yotaos.conf").splitlines(),
+            "YotaOS application version is inconsistent")
+
+    theme_meta = json.loads(
+        read(f"{overlay_root}/usr/share/plasma/desktoptheme/yotaos/metadata.json")
+    )
+    require(theme_meta.get("KPlugin", {}).get("Version") == version,
+            "YotaOS Plasma theme version is inconsistent")
+    require(f"Comment=YotaOS {version}" in
+            read(f"{overlay_root}/usr/share/plasma/plasma-welcome/"
+                 "intro-customization.desktop").splitlines(),
+            "YotaOS Plasma Welcome version is inconsistent")
 
     security_root = ET.parse(ROOT / "build/yotaos/components/security.xml").getroot()
     names = [p.attrib["name"] for p in security_root.findall(".//package")]

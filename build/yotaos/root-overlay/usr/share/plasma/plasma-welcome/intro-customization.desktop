@@ -2,5 +2,5 @@
 Type=Application
 Name=Welcome to YotaOS
 Icon=file:///usr/share/yotaos/branding/yotaos-fox.png
-Comment=YotaOS 0.2-dev
+Comment=YotaOS 0.3
 URL=https://github.com/yotahiku2/YotaOS
