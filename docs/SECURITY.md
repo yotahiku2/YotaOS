@@ -21,6 +21,12 @@ No launcher starts a network scan, wireless capture, password attempt, or root-r
 
 Some tools require root access, an appropriate wireless adapter, or a non-virtualized network interface. Those privileges are **not** granted automatically by YotaOS. The KDE menu and terminal profile do not replace any command-line features.
 
+## Preview in an existing YotaOS VM
+
+To test the new menu before a full ISO build, clone this branch in the **YotaOS VM** and run `scripts/preview-security-menu.sh` as the desktop user. It installs only the menu, launchers, helper, and Konsole profile (not the new RPMs). The script refuses to run on a non-YotaOS system or directly as root.
+
+The old and newly added launchers will appear, but the 13 new RPMs still need installing before those extra tools work. A live session may have limited write space, and changes will disappear on reboot unless persistence is configured.
+
 ## Package status and preflight
 
 The earlier 25-package profile has reached a YotaOS VM; installation was explicitly checked there for Wireshark, tcpdump, Hashcat, Aircrack-ng, Nuclei, and Hydra. The expanded list adds 13 Fedora 44 packages: `nmap`, `arp-scan`, `masscan`, `etherape`, `ettercap`, `gobuster`, `whatweb`, `hydra-frontend`, `medusa`, `hcxtools`, `lynis`, `chkrootkit`, `rkhunter`.
