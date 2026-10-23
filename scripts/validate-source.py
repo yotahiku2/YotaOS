@@ -193,8 +193,13 @@ def main() -> None:
     plasma_layout = read("build/yotaos/root-overlay/usr/share/plasma/"
                          "look-and-feel/org.yotaos.desktop/contents/"
                          "layouts/org.kde.plasma.desktop-layout.js")
-    require('yotaLauncher.writeConfig("highlightNewlyInstalledApps", false)'
-            in plasma_layout, "Default Kickoff should disable New badges")
+    require('panel.addWidget("org.kde.plasma.kicker")' in plasma_layout,
+            "Kicker must be the default launcher for nested categories")
+    require('yotaLauncher.writeConfig("icon", '
+            '"/usr/share/yotaos/branding/yotaos-fox.png")' in plasma_layout,
+            "The Kicker widget must keep the fox icon")
+    require('highlightNewlyInstalledApps' not in plasma_layout,
+            "Remove the obsolete Kickoff-only New badge setting")
 
     print(f"PASS: {len(component_paths)} KIWI XML files, "
           f"{len(names)} security packages, profile wiring, "
