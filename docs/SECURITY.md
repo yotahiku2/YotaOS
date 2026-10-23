@@ -1,48 +1,56 @@
-# YotaOS Security toolkit
+# YotaOS Security
 
-YotaOS is building a Fedora-based security workstation for **authorized labs, defensive analysis, and security education**. It is not a Kali fork.
+YotaOS uses Fedora 44 packages for its built-in security toolkit. The desktop is still KDE Plasma; the security menu is modeled on Kali's approach of grouping tools by task. The commands themselves remain the upstream tools.
 
-## Status
+## Current build target
 
-The `YotaOS-Security` profile is part of the source tree and is required by `YotaOS-Desktop-Live`. **Package resolution and runtime behavior have not yet been verified by a new full KIWI build.**
+The KIWI `YotaOS-Security` profile includes **38 package entries**. The app menu contains **37 tool shortcuts** across eight categories, plus a dedicated **YotaOS Security Terminal**. Graphical tools open normally; CLI tools open Konsole with the YotaOS Security profile, run their usage command or interactive interface, then leave an interactive shell for further commands.
 
-The 25 package names below were queried against a Fedora 44 host's configured repositories during development. An individual package's presence on the host does not guarantee resolution in the ISO builder's repositories.
+No launcher starts a network scan, wireless capture, password attempt, or root-required audit by itself.
 
-## Packages in the current image manifest
-
-| Category | Fedora package names |
+| Category | Built-in launchers |
 | --- | --- |
-| Network analysis | `wireshark`, `wireshark-cli`, `tcpdump`, `nmap-ncat`, `socat`, `traceroute`, `whois`, `python3-scapy` |
-| Web security | `nuclei` |
-| Password auditing | `hashcat`, `john`, `hydra` |
-| Wireless analysis | `aircrack-ng`, `kismet` |
-| Digital forensics | `sleuthkit`, `foremost`, `testdisk`, `binwalk` |
-| Reverse engineering/debugging | `radare2`, `gdb`, `strace` |
-| Development tools | `git`, `gcc`, `make`, `jq` |
+| Reconnaissance | Nmap, arp-scan, Masscan, Traceroute, WHOIS |
+| Network Analysis | Wireshark (GUI), EtherApe (GUI), TShark, tcpdump, Ncat, Scapy, socat, Ettercap |
+| Web Testing | Nuclei, Gobuster, WhatWeb |
+| Wireless | Aircrack-ng, Airodump-ng, Airmon-ng, Aireplay-ng, Kismet, hcxpcapngtool |
+| Password Auditing | Hashcat, John the Ripper, Hydra, XHydra (GUI), Medusa |
+| Forensics | Sleuth Kit (fls), Foremost, TestDisk, Binwalk |
+| Reverse Engineering | radare2, GDB, strace |
+| Host Auditing | Lynis, chkrootkit, Rootkit Hunter |
 
-Some commands require elevated privileges, additional drivers, external hardware, or explicit permission to access a network. Some run only in the terminal. A running YotaOS VM has been reported to contain Wireshark, tcpdump, Hashcat, Aircrack-ng, Nuclei, and Hydra; the rest of the package list has not been independently runtime-tested.
+Some tools require root access, an appropriate wireless adapter, or a non-virtualized network interface. Those privileges are **not** granted automatically by YotaOS. The KDE menu and terminal profile do not replace any command-line features.
 
-## KDE application menu
+## Preview in an existing YotaOS VM
 
-The source overlay includes a **YotaOS Security** application menu with six categories and 21 entries. Wireshark launches its GUI; terminal-based entries open Konsole with a suggested help command and an interactive shell. They do not automatically start network captures, probes, or password attacks.
+To test the new menu before a full ISO build, clone this branch in the **YotaOS VM** and run `scripts/preview-security-menu.sh` as the desktop user. It installs only the menu, launchers, helper, and Konsole profile (not the new RPMs). The script refuses to run on a non-YotaOS system or directly as root.
 
-The YotaOS menu fragment also requests that **YotaOS Security** appear before the standard Plasma categories, while keeping the other categories visible. The fox Kickoff launcher is configured to avoid marking bundled utilities as **New!** in fresh sessions. Menu ordering can still be overridden by each user's KDE Menu Editor settings. Existing sessions must turn off new-app highlighting in **Configure Application Launcher → General**; changing the template does not retroactively edit a running user's widget settings.
+The old and newly added launchers will appear, but the 13 new RPMs still need installing before those extra tools work. A live session may have limited write space, and changes will disappear on reboot unless persistence is configured.
 
-This menu is not installed in already-running live sessions by merging the GitHub branch. It needs to be copied into the running environment for testing or included in a fresh image build. The menu uses the standard `/etc/xdg/menus/applications-merged/` fragment location, so it doesn't replace Plasma's main menu definition.
+## Package status and preflight
 
+The earlier 25-package profile has reached a YotaOS VM; installation was explicitly checked there for Wireshark, tcpdump, Hashcat, Aircrack-ng, Nuclei, and Hydra. The expanded list adds 13 Fedora 44 packages: `nmap`, `arp-scan`, `masscan`, `etherape`, `ettercap`, `gobuster`, `whatweb`, `hydra-frontend`, `medusa`, `hcxtools`, `lynis`, `chkrootkit`, `rkhunter`.
 
-## Not yet included in the manifest
+The Fedora package index lists these new packages for Fedora 44, but the local package repository configuration can differ. A previous host-side query failed to find `nmap` even though Fedora's package index lists it for Fedora 44. **Before another long build, run on the Fedora host**:
 
-The following were considered but were not found by the specific Fedora 44 repository check used during development: `nmap`, `sqlmap`, `nikto`, `ghidra`, and `zaproxy`. This **does not prove they are unavailable**. We should verify Fedora package naming, enabled repositories, upstream installation methods, licenses, and build compatibility before integration.
+```bash
+python3 scripts/check-security-packages.py
+```
 
-`nmap-ncat` is **not** the full `nmap` network scanner.
+This is a read-only check of available names in the host's enabled DNF repositories. A successful check still does not prove that KIWI's internal dependency resolution will succeed. If a package is missing, resolve the repository difference before starting the ISO build.
 
-## Direction
+## GUI versus CLI
 
-- Maintain a clean desktop and avoid installing every security tool by default in lighter YotaOS editions.
-- Add optional packages or curated profiles for web testing, forensics, malware analysis, and wireless research.
-- Prefer distribution-packaged and reproducible dependencies.
-- Document repository trust, security updates, tool capabilities, and permissions.
-- Test CLI and GUI startup in a disposable VM before announcing features as working.
+Wireshark, EtherApe, and XHydra have their own GUI entries. A Konsole window opens for tools without a graphical interface. The dedicated security profile uses the existing YotaOS terminal colors, not a terminal emulator fork.
 
-Cybersecurity tools must be used **only against systems and networks you own or have permission to assess**. Never run destructive checks against third-party targets without authorization.
+Kismet has its own user interface and setup requirements; the menu opens a shell with guidance instead of launching its service automatically. TestDisk is an interactive disk utility; deliberately opening a terminal first avoids accidental operations on real drives.
+
+## Still on the wish list
+
+SQLmap, Nikto, Ghidra, OWASP ZAP, Burp Suite Community, and Metasploit are **not bundled by this change**. Some aren't available in the configured Fedora repositories; others need separate trusted upstream packaging, licensing review, and version/checksum handling. They won't appear as pretend launchers. Add them only after their installation path and launch behavior are reproducible.
+
+## Testing
+
+Source CI checks the XML, menu entries, helper script, executable bit, and application references. It does **not** run the full Fedora ISO builder. On a fresh VM, check `command -v nmap`, `command -v john`, `command -v aircrack-ng`, `command -v xhydra`, and several GUI launchers before calling the expanded edition ready.
+
+Only use these tools on systems and networks you own or are authorized to test.

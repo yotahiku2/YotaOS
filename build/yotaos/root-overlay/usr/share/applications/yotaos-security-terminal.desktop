@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=YotaOS Security Terminal
+Comment=Konsole with the YotaOS Security profile
+Exec=konsole --profile YotaOS-Security
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

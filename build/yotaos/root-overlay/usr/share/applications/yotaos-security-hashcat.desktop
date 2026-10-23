@@ -2,7 +2,7 @@
 Type=Application
 Name=Hashcat
 Comment=Password hash auditing
-Exec=konsole -e /usr/libexec/yotaos/security-tool hashcat
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool hashcat
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

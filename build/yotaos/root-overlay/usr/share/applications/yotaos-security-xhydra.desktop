@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=XHydra
+Comment=Graphical Hydra frontend
+Exec=xhydra
+TryExec=xhydra
+Icon=dialog-password
+Terminal=false
+StartupNotify=false

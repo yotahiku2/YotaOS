@@ -2,7 +2,7 @@
 Type=Application
 Name=strace
 Comment=Trace process system calls
-Exec=konsole -e /usr/libexec/yotaos/security-tool strace
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool strace
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

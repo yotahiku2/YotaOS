@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Aireplay-ng
+Comment=Wireless frame testing
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool aireplay-ng
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

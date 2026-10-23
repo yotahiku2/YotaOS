@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=hcxpcapngtool
+Comment=Convert wireless captures for offline auditing
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool hcxpcapngtool
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

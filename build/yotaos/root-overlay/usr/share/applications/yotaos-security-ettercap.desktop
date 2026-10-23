@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Ettercap
+Comment=Network traffic analyzer
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool ettercap
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

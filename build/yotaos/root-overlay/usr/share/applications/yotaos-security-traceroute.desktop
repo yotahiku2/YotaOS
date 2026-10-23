@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=traceroute
-Comment=Trace network routes
-Exec=konsole -e /usr/libexec/yotaos/security-tool traceroute
+Name=Traceroute
+Comment=Trace the route to a host
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool traceroute
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

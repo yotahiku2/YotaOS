@@ -2,7 +2,7 @@
 Type=Application
 Name=Kismet
 Comment=Wireless network analysis
-Exec=konsole -e /usr/libexec/yotaos/security-tool kismet
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool kismet
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

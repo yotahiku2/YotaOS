@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=radare2
-Comment=Binary analysis
-Exec=konsole -e /usr/libexec/yotaos/security-tool r2
+Comment=Binary analysis framework
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool r2
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

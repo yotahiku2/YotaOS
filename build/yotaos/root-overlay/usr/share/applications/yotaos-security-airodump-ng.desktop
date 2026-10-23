@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Airodump-ng
+Comment=Wireless capture utility
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool airodump-ng
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

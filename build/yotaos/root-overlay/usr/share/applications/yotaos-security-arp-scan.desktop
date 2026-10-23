@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=arp-scan
+Comment=Discover hosts on a local link
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool arp-scan
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

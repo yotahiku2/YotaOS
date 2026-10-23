@@ -22,7 +22,8 @@ YotaOS is experimental; milestone names describe **development goals**, not fini
 - [x] Integrate 25 security/developer package entries into the live-profile source
 - [ ] Resolve all requested packages in the actual KIWI build
 - [ ] Smoke-test representative CLI/GUI tools in a fresh VM
-- [ ] Provide organized security application categories without duplicating system launchers
+- [x] Provide organized security application categories and a YotaOS Security terminal profile (source and live menu tested)
+- [ ] Verify expanded tool packages and GUI launchers in a fresh live/installed VM
 - [ ] Investigate missing tools, licenses, and reliable distribution methods
 
 ## Future milestones

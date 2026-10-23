@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=Aircrack-ng
-Comment=Wireless security toolkit
-Exec=konsole -e /usr/libexec/yotaos/security-tool aircrack-ng
+Comment=Wireless capture and key auditing
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool aircrack-ng
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

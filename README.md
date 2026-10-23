@@ -18,7 +18,7 @@ YotaOS is **in development**, not ready for regular installation on important ha
 | Base | Fedora 44, x86_64 |
 | Desktop | KDE Plasma |
 | Image builder | KIWI NG |
-| Security packages | 25 entries in the current KIWI profile |
+| Security packages | 38 entries in the next KIWI profile (not yet ISO-tested) |
 
 The original 0.2-dev ISO booted successfully in a VM with the custom desktop layout. Since that build, I've changed the live installer setup, Plasma session splash, and security package selection. **Those changes still need a fresh ISO build and install test.**
 
@@ -40,6 +40,7 @@ On a Fedora build machine with KIWI dependencies installed:
 git clone https://github.com/yotahiku2/YotaOS.git
 cd YotaOS
 python3 scripts/validate-source.py
+python3 scripts/check-security-packages.py
 ./build/build.sh
 ```
 

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Airmon-ng
+Comment=Wireless monitor-mode management
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool airmon-ng
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

@@ -2,7 +2,7 @@
 Type=Application
 Name=GDB
 Comment=GNU debugger
-Exec=konsole -e /usr/libexec/yotaos/security-tool gdb
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool gdb
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

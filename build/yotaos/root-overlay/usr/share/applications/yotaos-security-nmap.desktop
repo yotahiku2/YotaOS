@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Nmap
+Comment=Network discovery and port scanning
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool nmap
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

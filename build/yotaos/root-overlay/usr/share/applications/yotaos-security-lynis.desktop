@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Lynis
+Comment=Local system security audit
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool lynis
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

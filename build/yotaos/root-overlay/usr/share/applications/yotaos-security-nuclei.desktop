@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=Nuclei
-Comment=Template-based security testing
-Exec=konsole -e /usr/libexec/yotaos/security-tool nuclei
+Comment=Template-based security checks
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool nuclei
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false

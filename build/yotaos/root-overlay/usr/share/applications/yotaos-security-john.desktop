@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=John the Ripper
-Comment=Password auditing
-Exec=konsole -e /usr/libexec/yotaos/security-tool john
+Comment=Password hash auditing
+Exec=konsole --profile YotaOS-Security -e /usr/libexec/yotaos/security-tool john
 TryExec=konsole
 Icon=utilities-terminal
 Terminal=false
