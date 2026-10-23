@@ -21,6 +21,9 @@ YotaOS is experimental; milestone names describe **development goals**, not fini
 - [x] Add a separate YotaOS-Security KIWI profile
 - [x] Integrate 25 security/developer package entries into the live-profile source
 - [ ] Resolve all requested packages in the actual KIWI build
+- [x] Add Fedora 44 package availability and DNF5 transaction preflight in CI (source)
+- [x] Fedora 44 CI found 41/41 packages and solved their DNF5 dependencies (October 23, 2026)
+- [x] Add read-only runtime RPM, CLI and GUI presence checker (source change)
 - [ ] Smoke-test representative CLI/GUI tools in a fresh VM
 - [x] Provide organized security application categories and a YotaOS Security terminal profile (source and live menu tested)
 - [x] Design two-level Security categories with 16 task-focused submenus (source changes)

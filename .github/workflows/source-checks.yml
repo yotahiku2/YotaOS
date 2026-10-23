@@ -32,5 +32,5 @@ jobs:
 
       - name: Validate image definitions and branding
         run: |
-          python3 -m py_compile scripts/check-security-packages.py
+          python3 -m py_compile scripts/check-security-packages.py scripts/check-security-runtime.py
           python3 scripts/validate-source.py

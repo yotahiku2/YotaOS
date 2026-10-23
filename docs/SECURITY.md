@@ -31,13 +31,13 @@ The old and newly added launchers will appear, but the 16 newly added RPMs still
 
 The earlier 25-package profile has reached a YotaOS VM; installation was explicitly checked there for Wireshark, tcpdump, Hashcat, Aircrack-ng, Nuclei, and Hydra. The expanded list now adds 16 Fedora 44 packages: `nmap`, `arp-scan`, `masscan`, `etherape`, `ettercap`, `gobuster`, `whatweb`, `hydra-frontend`, `medusa`, `hcxtools`, `lynis`, `chkrootkit`, `rkhunter`, `ophcrack`, `iaito`, `imhex`.
 
-The Fedora package index lists these new packages for Fedora 44, but the local package repository configuration can differ. A previous host-side query failed to find `nmap` even though Fedora's package index lists it for Fedora 44. **Before another long build, run on the Fedora host**:
+**Fedora 44 CI result (October 23, 2026):** all **41/41** package names were found in Fedora repositories, and a combined DNF5 transaction plan resolved successfully without installing the tools. This validates repository availability and dependency planning, **not** the full KIWI image or application startup. A host with different repositories can still produce a different result. **Before another long build, run on the Fedora host**:
 
 ```bash
-python3 scripts/check-security-packages.py
+python3 scripts/check-security-packages.py --resolve
 ```
 
-This is a read-only check of available names in the host's enabled DNF repositories. A successful check still does not prove that KIWI's internal dependency resolution will succeed. If a package is missing, resolve the repository difference before starting the ISO build.
+The check first verifies exact Fedora RPM names and then asks DNF5 to solve all security packages together using `install --store` without installing or downloading RPMs. GitHub Actions also runs it inside an official Fedora 44 container. A successful Fedora transaction plan still does not prove KIWI's internal repositories or the installed GUI/CLI tools behave correctly. If a package is missing, resolve the repository difference before starting the ISO build.
 
 ## Nested menu organization
 
@@ -68,6 +68,14 @@ SQLmap, Nikto, Ghidra, OWASP ZAP, Burp Suite Community, and Metasploit are **not
 
 ## Testing
 
-Source CI checks the XML, menu entries, helper script, executable bit, and application references. It does **not** run the full Fedora ISO builder. On a fresh VM, check `command -v nmap`, `command -v john`, `command -v aircrack-ng`, `command -v xhydra`, and several GUI launchers before calling the expanded edition ready.
+Source CI checks the XML, menu entries, helper script, executable bit, and application references. Fedora 44 CI additionally checks RPM availability and performs a DNF5 combined dependency solve. **Neither runs the full KIWI ISO builder.**
+
+In a running YotaOS VM, from the checkout run:
+
+```bash
+python3 scripts/check-security-runtime.py --strict
+```
+
+The runtime checker only reports installed RPMs, command availability, the installed menu tree and Konsole setup. It **does not launch any tools**. An older YotaOS ISO is expected to report missing packages and commands; this does not mean the new GitHub source is broken. Once a new ISO is built, manually launch Wireshark, Ophcrack, iaito, ImHex, John and Aircrack-ng to verify the actual user experience.
 
 Only use these tools on systems and networks you own or are authorized to test.
