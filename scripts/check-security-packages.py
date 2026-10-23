@@ -31,7 +31,13 @@ def query_packages() -> set[str]:
         print(result.stderr.strip(), file=sys.stderr)
         sys.exit(f"DNF repoquery failed (exit {result.returncode}).")
 
-    return set(result.stdout.splitlines())
+    names = set(result.stdout.splitlines())
+    if not names:
+        print("DNF returned no package names; raw output preview:",
+              repr(result.stdout[:300]), file=sys.stderr)
+        print("DNF diagnostics:", repr(result.stderr[:500]), file=sys.stderr)
+        sys.exit("DNF repository query returned an empty catalog.")
+    return names
 
 
 def resolve_packages(packages: list[str]) -> None:
