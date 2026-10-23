@@ -24,6 +24,7 @@ YotaOS is experimental; milestone names describe **development goals**, not fini
 - [ ] Smoke-test representative CLI/GUI tools in a fresh VM
 - [x] Provide organized security application categories and a YotaOS Security terminal profile (source and live menu tested)
 - [x] Design two-level Security categories with 16 task-focused submenus (source changes)
+- [x] Select Kicker as the default fox menu for nested categories (source change; manual widget switch VM-tested)
 - [x] Add GUI package definitions for Ophcrack, iaito, and ImHex (source changes)
 - [ ] Verify expanded tool packages, GUI launchers, and nested menu in a fresh live/installed VM
 - [ ] Investigate missing tools, licenses, and reliable distribution methods
