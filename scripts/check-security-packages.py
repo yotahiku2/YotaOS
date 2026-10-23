@@ -20,8 +20,9 @@ MANIFEST = ROOT / "build/yotaos/components/security.xml"
 def query_packages() -> set[str]:
     try:
         result = subprocess.run(
+            # DNF5 needs an explicit \\n in --qf; it no longer adds one per RPM.
             # Query the complete Fedora catalog and compare exact names.
-            ["dnf", "repoquery", "--available", "--qf", "%{name}"],
+            ["dnf", "repoquery", "--available", "--qf", r"%{name}\n"],
             capture_output=True, text=True, timeout=240, check=False,
         )
     except subprocess.TimeoutExpired:
@@ -90,8 +91,6 @@ def main() -> None:
         "in the enabled repositories.", flush=True
     )
     if missing:
-        print(f"Repoquery returned {len(available)} distinct entries; sample:",
-              repr(sorted(available)[:8]))
         print("Missing:")
         for name in missing:
             print(f"  {name}")
