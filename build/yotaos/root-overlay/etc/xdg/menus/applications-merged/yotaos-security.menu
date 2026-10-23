@@ -2,6 +2,13 @@
 <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN" "http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
 <Menu>
   <Name>Applications</Name>
+  <!-- Keep the YotaOS category ahead of the stock Plasma menus. -->
+  <Layout>
+    <Menuname>YotaOS Security</Menuname>
+    <Merge type="menus"/>
+    <Menuname>Applications</Menuname>
+    <Merge type="files"/>
+  </Layout>
   <Menu>
     <Name>YotaOS Security</Name>
     <Directory>yotaos-security.directory</Directory>
