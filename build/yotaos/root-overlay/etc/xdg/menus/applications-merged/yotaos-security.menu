@@ -33,7 +33,7 @@
       <Directory>yotaos-security-recon.directory</Directory>
       <Layout>
         <Menuname>Host Discovery</Menuname>
-        <Menuname>Port & Route Mapping</Menuname>
+        <Menuname>Port &amp; Route Mapping</Menuname>
         <Merge type="menus"/>
         <Merge type="files"/>
       </Layout>
@@ -46,7 +46,7 @@
         </Include>
       </Menu>
       <Menu>
-        <Name>Port & Route Mapping</Name>
+        <Name>Port &amp; Route Mapping</Name>
         <Directory>yotaos-security-recon-mapping.directory</Directory>
         <Include>
           <Filename>yotaos-security-masscan.desktop</Filename>
@@ -60,7 +60,7 @@
       <Directory>yotaos-security-network.directory</Directory>
       <Layout>
         <Menuname>Packet Capture</Menuname>
-        <Menuname>Traffic & Connections</Menuname>
+        <Menuname>Traffic &amp; Connections</Menuname>
         <Merge type="menus"/>
         <Merge type="files"/>
       </Layout>
@@ -74,7 +74,7 @@
         </Include>
       </Menu>
       <Menu>
-        <Name>Traffic & Connections</Name>
+        <Name>Traffic &amp; Connections</Name>
         <Directory>yotaos-security-network-inspection.directory</Directory>
         <Include>
           <Filename>yotaos-security-etherape.desktop</Filename>
@@ -114,13 +114,13 @@
       <Name>Wireless</Name>
       <Directory>yotaos-security-wireless.directory</Directory>
       <Layout>
-        <Menuname>Monitoring & Capture</Menuname>
+        <Menuname>Monitoring &amp; Capture</Menuname>
         <Menuname>Wireless Auditing</Menuname>
         <Merge type="menus"/>
         <Merge type="files"/>
       </Layout>
       <Menu>
-        <Name>Monitoring & Capture</Name>
+        <Name>Monitoring &amp; Capture</Name>
         <Directory>yotaos-security-wireless-monitoring.directory</Directory>
         <Include>
           <Filename>yotaos-security-airmon-ng.desktop</Filename>
@@ -142,13 +142,13 @@
       <Name>Password Auditing</Name>
       <Directory>yotaos-security-passwords.directory</Directory>
       <Layout>
-        <Menuname>Password & Hash Auditing</Menuname>
+        <Menuname>Password &amp; Hash Auditing</Menuname>
         <Menuname>Login Auditing</Menuname>
         <Merge type="menus"/>
         <Merge type="files"/>
       </Layout>
       <Menu>
-        <Name>Password & Hash Auditing</Name>
+        <Name>Password &amp; Hash Auditing</Name>
         <Directory>yotaos-security-passwords-hashes.directory</Directory>
         <Include>
           <Filename>yotaos-security-hashcat.desktop</Filename>
@@ -170,13 +170,13 @@
       <Name>Forensics</Name>
       <Directory>yotaos-security-forensics.directory</Directory>
       <Layout>
-        <Menuname>Disk & Recovery</Menuname>
-        <Menuname>File & Firmware Analysis</Menuname>
+        <Menuname>Disk &amp; Recovery</Menuname>
+        <Menuname>File &amp; Firmware Analysis</Menuname>
         <Merge type="menus"/>
         <Merge type="files"/>
       </Layout>
       <Menu>
-        <Name>Disk & Recovery</Name>
+        <Name>Disk &amp; Recovery</Name>
         <Directory>yotaos-security-forensics-disks.directory</Directory>
         <Include>
           <Filename>yotaos-security-fls.desktop</Filename>
@@ -184,7 +184,7 @@
         </Include>
       </Menu>
       <Menu>
-        <Name>File & Firmware Analysis</Name>
+        <Name>File &amp; Firmware Analysis</Name>
         <Directory>yotaos-security-forensics-files.directory</Directory>
         <Include>
           <Filename>yotaos-security-foremost.desktop</Filename>
