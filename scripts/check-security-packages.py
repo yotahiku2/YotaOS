@@ -90,6 +90,8 @@ def main() -> None:
         "in the enabled repositories.", flush=True
     )
     if missing:
+        print(f"Repoquery returned {len(available)} distinct entries; sample:",
+              repr(sorted(available)[:8]))
         print("Missing:")
         for name in missing:
             print(f"  {name}")
