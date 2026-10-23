@@ -23,7 +23,9 @@ YotaOS is experimental; milestone names describe **development goals**, not fini
 - [ ] Resolve all requested packages in the actual KIWI build
 - [ ] Smoke-test representative CLI/GUI tools in a fresh VM
 - [x] Provide organized security application categories and a YotaOS Security terminal profile (source and live menu tested)
-- [ ] Verify expanded tool packages and GUI launchers in a fresh live/installed VM
+- [x] Design two-level Security categories with 16 task-focused submenus (source changes)
+- [x] Add GUI package definitions for Ophcrack, iaito, and ImHex (source changes)
+- [ ] Verify expanded tool packages, GUI launchers, and nested menu in a fresh live/installed VM
 - [ ] Investigate missing tools, licenses, and reliable distribution methods
 
 ## Future milestones

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=iaito
+Comment=Graphical interface for radare2 binary analysis
+Exec=iaito
+TryExec=iaito
+Icon=applications-development
+Terminal=false
+StartupNotify=true

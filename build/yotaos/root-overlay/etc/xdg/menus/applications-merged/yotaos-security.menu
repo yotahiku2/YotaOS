@@ -2,7 +2,7 @@
 <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN" "http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
 <Menu>
   <Name>Applications</Name>
-  <!-- Keep YotaOS Security first without hiding other applications. -->
+  <!-- Keep YotaOS Security above the stock Plasma categories. -->
   <Layout>
     <Menuname>YotaOS Security</Menuname>
     <Merge type="menus"/>
@@ -15,90 +15,234 @@
     <Include>
       <Filename>yotaos-security-terminal.desktop</Filename>
     </Include>
+    <Layout>
+      <Filename>yotaos-security-terminal.desktop</Filename>
+      <Menuname>Reconnaissance</Menuname>
+      <Menuname>Network Analysis</Menuname>
+      <Menuname>Web Testing</Menuname>
+      <Menuname>Wireless</Menuname>
+      <Menuname>Password Auditing</Menuname>
+      <Menuname>Forensics</Menuname>
+      <Menuname>Reverse Engineering</Menuname>
+      <Menuname>Host Auditing</Menuname>
+      <Merge type="menus"/>
+      <Merge type="files"/>
+    </Layout>
     <Menu>
       <Name>Reconnaissance</Name>
       <Directory>yotaos-security-recon.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-nmap.desktop</Filename>
-        <Filename>yotaos-security-arp-scan.desktop</Filename>
-        <Filename>yotaos-security-masscan.desktop</Filename>
-        <Filename>yotaos-security-traceroute.desktop</Filename>
-        <Filename>yotaos-security-whois.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Host Discovery</Menuname>
+        <Menuname>Port & Route Mapping</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Host Discovery</Name>
+        <Directory>yotaos-security-recon-discovery.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-nmap.desktop</Filename>
+          <Filename>yotaos-security-arp-scan.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Port & Route Mapping</Name>
+        <Directory>yotaos-security-recon-mapping.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-masscan.desktop</Filename>
+          <Filename>yotaos-security-traceroute.desktop</Filename>
+          <Filename>yotaos-security-whois.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Network Analysis</Name>
       <Directory>yotaos-security-network.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-wireshark.desktop</Filename>
-        <Filename>yotaos-security-etherape.desktop</Filename>
-        <Filename>yotaos-security-tshark.desktop</Filename>
-        <Filename>yotaos-security-tcpdump.desktop</Filename>
-        <Filename>yotaos-security-ncat.desktop</Filename>
-        <Filename>yotaos-security-scapy.desktop</Filename>
-        <Filename>yotaos-security-socat.desktop</Filename>
-        <Filename>yotaos-security-ettercap.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Packet Capture</Menuname>
+        <Menuname>Traffic & Connections</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Packet Capture</Name>
+        <Directory>yotaos-security-network-capture.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-wireshark.desktop</Filename>
+          <Filename>yotaos-security-tshark.desktop</Filename>
+          <Filename>yotaos-security-tcpdump.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Traffic & Connections</Name>
+        <Directory>yotaos-security-network-inspection.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-etherape.desktop</Filename>
+          <Filename>yotaos-security-ettercap.desktop</Filename>
+          <Filename>yotaos-security-scapy.desktop</Filename>
+          <Filename>yotaos-security-ncat.desktop</Filename>
+          <Filename>yotaos-security-socat.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Web Testing</Name>
       <Directory>yotaos-security-web.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-nuclei.desktop</Filename>
-        <Filename>yotaos-security-gobuster.desktop</Filename>
-        <Filename>yotaos-security-whatweb.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Website Discovery</Menuname>
+        <Menuname>Security Checks</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Website Discovery</Name>
+        <Directory>yotaos-security-web-discovery.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-gobuster.desktop</Filename>
+          <Filename>yotaos-security-whatweb.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Security Checks</Name>
+        <Directory>yotaos-security-web-assessment.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-nuclei.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Wireless</Name>
       <Directory>yotaos-security-wireless.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-aircrack-ng.desktop</Filename>
-        <Filename>yotaos-security-airodump-ng.desktop</Filename>
-        <Filename>yotaos-security-airmon-ng.desktop</Filename>
-        <Filename>yotaos-security-aireplay-ng.desktop</Filename>
-        <Filename>yotaos-security-kismet.desktop</Filename>
-        <Filename>yotaos-security-hcxpcapngtool.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Monitoring & Capture</Menuname>
+        <Menuname>Wireless Auditing</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Monitoring & Capture</Name>
+        <Directory>yotaos-security-wireless-monitoring.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-airmon-ng.desktop</Filename>
+          <Filename>yotaos-security-airodump-ng.desktop</Filename>
+          <Filename>yotaos-security-kismet.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Wireless Auditing</Name>
+        <Directory>yotaos-security-wireless-auditing.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-aircrack-ng.desktop</Filename>
+          <Filename>yotaos-security-aireplay-ng.desktop</Filename>
+          <Filename>yotaos-security-hcxpcapngtool.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Password Auditing</Name>
       <Directory>yotaos-security-passwords.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-hashcat.desktop</Filename>
-        <Filename>yotaos-security-john.desktop</Filename>
-        <Filename>yotaos-security-hydra.desktop</Filename>
-        <Filename>yotaos-security-xhydra.desktop</Filename>
-        <Filename>yotaos-security-medusa.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Password & Hash Auditing</Menuname>
+        <Menuname>Login Auditing</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Password & Hash Auditing</Name>
+        <Directory>yotaos-security-passwords-hashes.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-hashcat.desktop</Filename>
+          <Filename>yotaos-security-john.desktop</Filename>
+          <Filename>yotaos-security-ophcrack.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Login Auditing</Name>
+        <Directory>yotaos-security-passwords-logins.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-hydra.desktop</Filename>
+          <Filename>yotaos-security-xhydra.desktop</Filename>
+          <Filename>yotaos-security-medusa.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Forensics</Name>
       <Directory>yotaos-security-forensics.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-fls.desktop</Filename>
-        <Filename>yotaos-security-foremost.desktop</Filename>
-        <Filename>yotaos-security-testdisk.desktop</Filename>
-        <Filename>yotaos-security-binwalk.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Disk & Recovery</Menuname>
+        <Menuname>File & Firmware Analysis</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Disk & Recovery</Name>
+        <Directory>yotaos-security-forensics-disks.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-fls.desktop</Filename>
+          <Filename>yotaos-security-testdisk.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>File & Firmware Analysis</Name>
+        <Directory>yotaos-security-forensics-files.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-foremost.desktop</Filename>
+          <Filename>yotaos-security-binwalk.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Reverse Engineering</Name>
       <Directory>yotaos-security-reversing.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-r2.desktop</Filename>
-        <Filename>yotaos-security-gdb.desktop</Filename>
-        <Filename>yotaos-security-strace.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>Binary Analysis</Menuname>
+        <Menuname>Process Tracing</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>Binary Analysis</Name>
+        <Directory>yotaos-security-reversing-binaries.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-r2.desktop</Filename>
+          <Filename>yotaos-security-gdb.desktop</Filename>
+          <Filename>yotaos-security-iaito.desktop</Filename>
+          <Filename>yotaos-security-imhex.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Process Tracing</Name>
+        <Directory>yotaos-security-reversing-processes.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-strace.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
     <Menu>
       <Name>Host Auditing</Name>
       <Directory>yotaos-security-audit.directory</Directory>
-      <Include>
-        <Filename>yotaos-security-lynis.desktop</Filename>
-        <Filename>yotaos-security-chkrootkit.desktop</Filename>
-        <Filename>yotaos-security-rkhunter.desktop</Filename>
-      </Include>
+      <Layout>
+        <Menuname>System Audits</Menuname>
+        <Menuname>Rootkit Checks</Menuname>
+        <Merge type="menus"/>
+        <Merge type="files"/>
+      </Layout>
+      <Menu>
+        <Name>System Audits</Name>
+        <Directory>yotaos-security-audit-system.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-lynis.desktop</Filename>
+        </Include>
+      </Menu>
+      <Menu>
+        <Name>Rootkit Checks</Name>
+        <Directory>yotaos-security-audit-rootkits.directory</Directory>
+        <Include>
+          <Filename>yotaos-security-chkrootkit.desktop</Filename>
+          <Filename>yotaos-security-rkhunter.desktop</Filename>
+        </Include>
+      </Menu>
     </Menu>
   </Menu>
 </Menu>
