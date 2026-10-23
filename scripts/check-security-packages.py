@@ -17,10 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "build/yotaos/components/security.xml"
 
 
-def query_packages(packages: list[str]) -> set[str]:
+def query_packages() -> set[str]:
     try:
         result = subprocess.run(
-            ["dnf", "repoquery", "--available", "--qf", "%{name}", *packages],
+            # Query the complete Fedora catalog and compare exact names.
+            ["dnf", "repoquery", "--available", "--qf", "%{name}"],
             capture_output=True, text=True, timeout=240, check=False,
         )
     except subprocess.TimeoutExpired:
@@ -75,7 +76,7 @@ def main() -> None:
         sys.exit("Duplicate security package names found in KIWI XML.")
 
     packages = sorted(names)
-    available = query_packages(packages)
+    available = query_packages()
     missing = [name for name in packages if name not in available]
 
     print(
