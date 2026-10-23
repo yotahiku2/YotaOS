@@ -26,6 +26,8 @@ Some commands require elevated privileges, additional drivers, external hardware
 
 The source overlay includes a **YotaOS Security** application menu with six categories and 21 entries. Wireshark launches its GUI; terminal-based entries open Konsole with a suggested help command and an interactive shell. They do not automatically start network captures, probes, or password attacks.
 
+The YotaOS menu fragment also requests that **YotaOS Security** appear before the standard Plasma categories, while keeping the other categories visible. The fox Kickoff launcher is configured to avoid marking bundled utilities as **New!** in fresh sessions. Menu ordering can still be overridden by each user's KDE Menu Editor settings. Existing sessions must turn off new-app highlighting in **Configure Application Launcher → General**; changing the template does not retroactively edit a running user's widget settings.
+
 This menu is not installed in already-running live sessions by merging the GitHub branch. It needs to be copied into the running environment for testing or included in a fresh image build. The menu uses the standard `/etc/xdg/menus/applications-merged/` fragment location, so it doesn't replace Plasma's main menu definition.
 
 
