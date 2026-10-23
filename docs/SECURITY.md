@@ -20,7 +20,14 @@ The 25 package names below were queried against a Fedora 44 host's configured re
 | Reverse engineering/debugging | `radare2`, `gdb`, `strace` |
 | Development tools | `git`, `gcc`, `make`, `jq` |
 
-Some commands require elevated privileges, additional drivers, external hardware, or explicit permission to access a network. Some run only in the terminal. GUI launchers and curated application-menu categories are planned, not yet shipped.
+Some commands require elevated privileges, additional drivers, external hardware, or explicit permission to access a network. Some run only in the terminal. A running YotaOS VM has been reported to contain Wireshark, tcpdump, Hashcat, Aircrack-ng, Nuclei, and Hydra; the rest of the package list has not been independently runtime-tested.
+
+## KDE application menu
+
+The source overlay includes a **YotaOS Security** application menu with six categories and 21 entries. Wireshark launches its GUI; terminal-based entries open Konsole with a suggested help command and an interactive shell. They do not automatically start network captures, probes, or password attacks.
+
+This menu is not installed in already-running live sessions by merging the GitHub branch. It needs to be copied into the running environment for testing or included in a fresh image build. The menu uses the standard `/etc/xdg/menus/applications-merged/` fragment location, so it doesn't replace Plasma's main menu definition.
+
 
 ## Not yet included in the manifest
 

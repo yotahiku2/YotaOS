@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Hydra
+Comment=Login auditing
+Exec=konsole -e /usr/libexec/yotaos/security-tool hydra
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

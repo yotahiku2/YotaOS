@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=radare2
+Comment=Binary analysis
+Exec=konsole -e /usr/libexec/yotaos/security-tool r2
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=socat
+Comment=Network relay utility
+Exec=konsole -e /usr/libexec/yotaos/security-tool socat
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false

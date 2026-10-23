@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Sleuth Kit (fls)
+Comment=List files in forensic disk images
+Exec=konsole -e /usr/libexec/yotaos/security-tool fls
+TryExec=konsole
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false
