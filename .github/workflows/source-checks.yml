@@ -28,6 +28,7 @@ jobs:
           bash -n build/yotaos/root-overlay/usr/lib/yotaos/branding.sh
           bash -n build/yotaos/root-overlay/var/lib/livesys/livesys-session-extra
           bash -n build/yotaos/root-overlay/usr/libexec/yotaos/security-tool
+          bash -n scripts/preview-security-menu.sh
 
       - name: Validate image definitions and branding
         run: |
