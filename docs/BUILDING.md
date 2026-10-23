@@ -59,7 +59,7 @@ The active version and output path come from `build/version.conf`. Do not rename
 1. Boot the freshly generated ISO in GNOME Boxes or another UEFI-capable VM.
 2. Confirm YotaOS branding, KDE session startup, and the visible **Install YotaOS** shortcut.
 3. Open the installer and verify that it can discover the intended **VM disk**. Do not test partitioning on a drive containing important data.
-4. Verify example security commands exist, e.g. `command -v tcpdump`, `command -v tshark`, `command -v r2`. Some security tools are CLI-only and have no application-menu entry.
+4. Run `python3 scripts/check-security-runtime.py --strict` from your YotaOS checkout. This read-only check reports installed RPMs, visible commands, menu folders and Konsole integration. It never launches scans or applications. Try a selection of CLI and GUI applications manually as a separate step.
 5. Test an installation into a **disposable VM virtual disk**, reboot, and confirm the normal created user can sign in.
 
 Not all planned tools or desktop changes are verified just because CI passes. For packaging issues, retain the KIWI logs and list the Fedora repositories used.
