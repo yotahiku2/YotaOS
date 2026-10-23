@@ -6,26 +6,22 @@
 	</profiles>
 
 	<packages type="image" patternType="plusRecommended" profiles="YotaOS-Desktop">
-		<!-- Core KDE Plasma desktop -->
 		<namedCollection name="kde-desktop-environment"/>
-
-		<!-- Web browser -->
 		<namedCollection name="firefox"/>
 
-		<!-- YotaOS default applications -->
+		<!-- Desktop applications -->
 		<package name="dolphin"/>
 		<package name="konsole"/>
 		<package name="kate"/>
 		<package name="ark"/>
-                
-                <!-- Script plugins or other shii hehe im karim typing ts btw -->
-                <package name="plymouth-plugin-script"/>
 
-		<!-- Basic desktop functionality -->
+		<!-- Required by the YotaOS Plymouth script theme -->
+		<package name="plymouth-plugin-script"/>
+
 		<package name="fuse"/>
 		<package name="kde-l10n"/>
 
-		<!-- Avoid redundant/unwanted packages -->
+		<!-- Unneeded applications and services from desktop recommendations -->
 		<ignore name="gnome-disk-utility"/>
 		<ignore name="mariadb-server-utils"/>
 		<ignore name="system-config-language"/>

@@ -1,14 +1,15 @@
-# YotaOS Base Package Manifest
+# Planning notes for a smaller YotaOS desktop edition.
+# This file is NOT read by KIWI. The current package selections are in:
+#   build/yotaos/components/desktop.xml
+#   build/yotaos/components/security.xml
 #
-# Keep the default installation small.
-# Packages belong here only when they provide functionality
-# expected from a normal YotaOS installation.
+# Keep this list for the future base/security split.
 
 [desktop]
 plasma-desktop
 plasma-workspace
 kwin
-sddm
+plasma-login-manager
 dolphin
 konsole
 
@@ -33,8 +34,5 @@ wget
 unzip
 zip
 
-# Optional YotaOS profiles will be defined separately:
-# yota-dev
-# yota-gaming
-# yota-security
-# yota-media
+# Future optional profiles: development, gaming, security, media.
+# Security currently belongs to the live image, not a separate ISO.
