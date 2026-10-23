@@ -1,8 +1,8 @@
 # YotaOS
 
-YotaOS is my Fedora-based Linux project, built around KDE Plasma. I want it to work as a normal desktop first, with development and cybersecurity tools available without turning the base system into a kitchen sink.
+YotaOS is my Fedora-based Linux project, built around KDE Plasma. I want it to work as a normal desktop first, with development and cybersecurity tools available without turning the base system into a mix of random shiz.
 
-The design has its own identity: the fox, a dark desktop, a compact floating panel, and a terminal prompt I actually want to use. Underneath, it's still Fedora and KDE. That's a deliberate choice; there's no reason to replace parts that already work.
+The design has its own identity: the fox, a dark desktop, a compact floating panel, and a terminal prompt that looks tuff. Under the hood, it's still Fedora and KDE. That's a deliberate choice; there's no reason to code my own display manager..
 
 Maintained by [@yotahiku2](https://github.com/yotahiku2).
 
