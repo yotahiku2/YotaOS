@@ -1,76 +1,59 @@
-# YotaOS 🦊
+# YotaOS
 
-**YotaOS** is an experimental, Fedora-based Linux distribution built around **KDE Plasma** for everyday computing, development, and authorized cybersecurity labs.
+YotaOS is my Fedora-based Linux project, built around KDE Plasma. I want it to work as a normal desktop first, with development and cybersecurity tools available without turning the base system into a kitchen sink.
 
-Our goal: a distinctive, lightweight-feeling desktop with sensible defaults, fox branding, and a curated collection of security tools. YotaOS is an independent community project, **not** an official Fedora or Kali Linux release.
+The design has its own identity: the fox, a dark desktop, a compact floating panel, and a terminal prompt I actually want to use. Underneath, it's still Fedora and KDE. That's a deliberate choice; there's no reason to replace parts that already work.
 
-[![YotaOS source checks](https://github.com/yotahiku2/YotaOS/actions/workflows/source-checks.yml/badge.svg)](https://github.com/yotahiku2/YotaOS/actions/workflows/source-checks.yml)
+Maintained by [@yotahiku2](https://github.com/yotahiku2).
 
-## Project status
+[![Source checks](https://github.com/yotahiku2/YotaOS/actions/workflows/source-checks.yml/badge.svg)](https://github.com/yotahiku2/YotaOS/actions/workflows/source-checks.yml)
 
-**Development preview. Not production-ready.**
+## Where it stands
+
+YotaOS is **in development**, not ready for regular installation on important hardware.
 
 | | |
 | --- | --- |
 | Source version | `0.2-dev` |
-| Base | Fedora 44 |
-| Architecture | x86_64 |
+| Base | Fedora 44, x86_64 |
 | Desktop | KDE Plasma |
-| Image build system | KIWI NG |
-| Security profile | Integrated in source; **not yet verified in a new ISO** |
+| Image builder | KIWI NG |
+| Security packages | 25 entries in the current KIWI profile |
 
-The older 0.2-dev ISO was successfully boot-tested before the newer installer, splash, and security-profile changes. **Those newer changes have not yet been tested together in an ISO.** Do not assume a new installation is safe or complete until we've validated it in a VM.
+The original 0.2-dev ISO booted successfully in a VM with the custom desktop layout. Since that build, I've changed the live installer setup, Plasma session splash, and security package selection. **Those changes still need a fresh ISO build and install test.**
 
-## What makes YotaOS different?
+## Design decisions
 
-- **Fox-first design:** YotaOS wallpaper, Plymouth boot splash, Konsole theme, floating Plasma panel, and a custom Plasma session splash in development.
-- **Fedora foundation:** Uses Fedora packages and a pinned Fedora 44 KIWI description as its build base.
-- **Developer-friendly:** KDE desktop, terminal-focused workflow, and open build configuration.
-- **Cybersecurity tooling:** A dedicated YotaOS Security image profile, with 25 package entries covering networking, wireless analysis, web testing, forensics, debugging, and password auditing.
-- **Reproducibility:** Versioned build sources, upstream revision pinning, and GitHub Actions preflight checks.
+- **Fedora as the base.** Use its packages and boot infrastructure instead of writing replacements for everything.
+- **KDE Plasma for the desktop.** The YotaOS layout keeps a 48 px floating panel, fox launcher, dark colors, and a custom wallpaper.
+- **Keep the default usable.** Browser, file manager, editor, and terminal belong in the desktop image.
+- **Security tools as a profile.** Networking, forensics, wireless analysis, and debugging packages have their own KIWI component. A smaller base edition is a future goal, not a separate release today.
+- **Builds should be repeatable.** The Fedora KIWI source revision is pinned, YotaOS changes are kept in an overlay, and CI checks source files before a full build.
 
-The project is inspired by the practicality of security-focused Linux systems, but it is **not a Kali fork**.
+More on the desktop and package choices: [DESIGN.md](DESIGN.md).
 
-## Getting started
+## Build it
 
-To inspect the source without building an ISO:
+On a Fedora build machine with KIWI dependencies installed:
 
 ```bash
 git clone https://github.com/yotahiku2/YotaOS.git
 cd YotaOS
 python3 scripts/validate-source.py
+./build/build.sh
 ```
 
-For Fedora build-host setup, KIWI prerequisites, and full ISO build steps, see **[Building YotaOS](docs/BUILDING.md)**.
+The last command runs a full ISO build, which can take hours and requires substantial free space. Read the [build notes](docs/BUILDING.md) before running it. Test new images in a disposable VM before touching real partitions.
 
-> **Important:** Test development images in a virtual machine first. Before installing to physical hardware, back up your data and verify the installer and boot behavior on the target hardware.
+## Repository
 
-## Security toolkit
+- `build/yotaos/` contains the image profiles and filesystem overlay.
+- `build/upstream.conf` pins the Fedora KIWI source.
+- `build/version.conf` controls the YotaOS image version.
+- `branding/` keeps the source artwork.
+- `scripts/` contains build-related checks.
+- `packages/base.txt` is a planning list; the active package selection is in the KIWI XML files.
 
-The new profile is defined in `build/yotaos/components/security.xml`; it inherits the YotaOS desktop and is included by the live profile. Packages are subject to resolution against Fedora's configured repositories during a real KIWI build.
+[Current roadmap](docs/ROADMAP.md) · [Security packages](docs/SECURITY.md) · [Report a problem](https://github.com/yotahiku2/YotaOS/issues)
 
-See **[Security toolkit](docs/SECURITY.md)** for the current package list, planned additions, and status.
-
-Only use cybersecurity tools on systems and networks you own or are authorized to test.
-
-## Development and roadmap
-
-**[Roadmap](docs/ROADMAP.md)** · **[Build guide](docs/BUILDING.md)** · **[Security toolkit](docs/SECURITY.md)** · **[Issues](https://github.com/yotahiku2/YotaOS/issues)**
-
-Contributions and bug reports are welcome. Include the YotaOS commit, Fedora base version, hardware/VM configuration, and reproduction steps when opening a bug report.
-
-### Repository layout
-
-| Path | Purpose |
-| --- | --- |
-| `branding/` | Fox identity and visual assets |
-| `build/yotaos/` | KIWI image definitions and filesystem overlay |
-| `build/build.sh` | End-to-end Fedora-based ISO build |
-| `build/version.conf` | YotaOS source version |
-| `packages/` | Planned package manifests |
-| `scripts/` | Utility and source-validation scripts |
-| `.github/workflows/` | Continuous source checks |
-
-### License and upstream credits
-
-YotaOS combines our own configuration with components from Fedora, KDE Plasma, KIWI NG, and other upstream projects, each governed by its respective license. Refer to individual files and upstream projects for copyright and license information.
+YotaOS is an independent project, not an official Fedora or Kali Linux distribution. Fedora, KDE, KIWI, and included applications remain the work of their respective upstream projects and retain their own licenses. Use security tools only on systems you own or have permission to test.
