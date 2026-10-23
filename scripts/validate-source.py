@@ -83,6 +83,16 @@ def main() -> None:
     menu = ET.parse(menu_path).getroot()
     require(menu.tag == "Menu" and menu.findtext("Name") == "Applications",
             "Invalid application-menu fragment root")
+    layout_order = [node.text for node in menu.findall("./Layout/Menuname")]
+    require(layout_order[:1] == ["YotaOS Security"],
+            "YotaOS Security should be the first menu category")
+    require(len(menu.findall("./Layout/Merge")) == 2,
+            "Root layout must preserve other application categories")
+    plasma_layout = read("build/yotaos/root-overlay/usr/share/plasma/"
+                         "look-and-feel/org.yotaos.desktop/contents/"
+                         "layouts/org.kde.plasma.desktop-layout.js")
+    require('yotaLauncher.writeConfig("highlightNewlyInstalledApps", false)'
+            in plasma_layout, "Default Kickoff should disable New badges")
     section = menu.find("./Menu")
     require(section is not None and section.findtext("Name") == "YotaOS Security",
             "YotaOS Security menu is missing")
