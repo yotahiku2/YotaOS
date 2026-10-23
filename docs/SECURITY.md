@@ -23,7 +23,7 @@ Some tools require root access, an appropriate wireless adapter, or a non-virtua
 
 ## Package status and preflight
 
-The first 25 security/developer package entries were installed in an earlier VM-tested image. The expanded list adds 13 Fedora 44 packages: `nmap`, `arp-scan`, `masscan`, `etherape`, `ettercap`, `gobuster`, `whatweb`, `hydra-frontend`, `medusa`, `hcxtools`, `lynis`, `chkrootkit`, `rkhunter`.
+The earlier 25-package profile has reached a YotaOS VM; installation was explicitly checked there for Wireshark, tcpdump, Hashcat, Aircrack-ng, Nuclei, and Hydra. The expanded list adds 13 Fedora 44 packages: `nmap`, `arp-scan`, `masscan`, `etherape`, `ettercap`, `gobuster`, `whatweb`, `hydra-frontend`, `medusa`, `hcxtools`, `lynis`, `chkrootkit`, `rkhunter`.
 
 The Fedora package index lists these new packages for Fedora 44, but the local package repository configuration can differ. A previous host-side query failed to find `nmap` even though Fedora's package index lists it for Fedora 44. **Before another long build, run on the Fedora host**:
 
