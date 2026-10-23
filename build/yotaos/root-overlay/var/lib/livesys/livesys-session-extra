@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+
+# YotaOS live-session customization.
+# This hook runs after Fedora's KDE live-session setup.
+
+if [ -d /home/liveuser ] && [ -x /usr/bin/liveinst ]; then
+    mkdir -p /home/liveuser/.local/share/applications
+    mkdir -p /home/liveuser/Desktop
+
+    cat > /home/liveuser/.local/share/applications/liveinst.desktop <<'DESKTOP'
+[Desktop Entry]
+Type=Application
+Name=Install YotaOS
+GenericName=System Installer
+Comment=Install YotaOS on your computer
+Exec=liveinst
+Icon=/usr/share/yotaos/branding/yotaos-fox.png
+Terminal=false
+Categories=System;Utility;
+StartupNotify=true
+StartupWMClass=liveinst
+DESKTOP
+
+    chmod 755 /home/liveuser/.local/share/applications/liveinst.desktop
+
+    cp /home/liveuser/.local/share/applications/liveinst.desktop \
+       /home/liveuser/Desktop/liveinst.desktop
+fi
