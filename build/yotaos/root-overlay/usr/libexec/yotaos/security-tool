@@ -48,10 +48,14 @@ printf '\nYotaOS Security: %s\n' "$tool"
 printf '%s\n' '-------------------------------'
 if command -v "$tool" >/dev/null 2>&1; then
     printf 'Installed: %s\n' "$(command -v "$tool")"
+    printf 'Opening: %s\n\n' "$help"
+    # The arguments come from the fixed allowlist above, not user input.
+    read -r -a usage_command <<< "$help"
+    "${usage_command[@]}" || true
 else
     printf 'Not installed in this environment: %s\n' "$tool"
+    printf 'Once installed, run: %s\n' "$help"
 fi
-printf 'Help: %s\n' "$help"
-printf 'Run the command yourself when you are ready.\n'
+printf '\nYou can continue working in this terminal.\n'
 printf 'Only assess systems and networks you are authorized to test.\n\n'
 exec "${SHELL:-/bin/bash}" -i
