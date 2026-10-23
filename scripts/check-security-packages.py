@@ -44,7 +44,7 @@ def query_packages() -> set[str]:
 def resolve_packages(packages: list[str]) -> None:
     with tempfile.TemporaryDirectory(prefix="yotaos-dnf-plan-") as directory:
         command = [
-            "dnf", "--setopt=install_weak_deps=False", "install",
+            "dnf", "--assumeyes", "--setopt=install_weak_deps=False", "install",
             f"--store={directory}", *packages,
         ]
         print("Resolving all packages in a single DNF5 transaction (no install)...",
@@ -57,7 +57,8 @@ def resolve_packages(packages: list[str]) -> None:
         except subprocess.TimeoutExpired:
             sys.exit("DNF dependency resolution timed out.")
 
-        print(result.stdout[-12000:])
+        summary = result.stdout.rsplit("Transaction Summary:", 1)[-1]
+        print(("Transaction Summary:" + summary)[-1400:])
         if result.returncode:
             sys.exit(
                 f"DNF could not resolve the security transaction "
