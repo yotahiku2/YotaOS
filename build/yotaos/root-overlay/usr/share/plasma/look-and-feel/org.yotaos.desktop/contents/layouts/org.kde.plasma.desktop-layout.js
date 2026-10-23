@@ -25,6 +25,8 @@ panel.maximumLength = yotaPanelWidth
 var yotaLauncher = panel.addWidget("org.kde.plasma.kickoff")
 yotaLauncher.currentConfigGroup = ["General"]
 yotaLauncher.writeConfig("icon", "/usr/share/yotaos/branding/yotaos-fox.png")
+// A fresh YotaOS image should not mark preinstalled tools as "New!".
+yotaLauncher.writeConfig("highlightNewlyInstalledApps", false)
 panel.addWidget("org.kde.plasma.icontasks")
 panel.addWidget("org.kde.plasma.marginsseparator")
 panel.addWidget("org.kde.plasma.systemtray")
