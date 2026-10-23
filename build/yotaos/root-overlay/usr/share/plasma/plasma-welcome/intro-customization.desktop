@@ -1,10 +1,6 @@
 [Desktop Entry]
 Type=Application
-
-Name=Welcome to YotaOS — a fast, clean Fedora-based Linux experience built around KDE Plasma.
-
+Name=Welcome to YotaOS
 Icon=file:///usr/share/yotaos/branding/yotaos-fox.png
-
 Comment=YotaOS 0.2-dev
-
 URL=https://github.com/yotahiku2/YotaOS
