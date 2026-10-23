@@ -4,7 +4,7 @@ YotaOS uses Fedora 44 packages for its built-in security toolkit. The desktop is
 
 ## Current build target
 
-The KIWI `YotaOS-Security` profile includes **38 package entries**. The app menu contains **37 tool shortcuts** across eight categories, plus a dedicated **YotaOS Security Terminal**. Graphical tools open normally; CLI tools open Konsole with the YotaOS Security profile, show where the command is installed, and leave an interactive prompt with a help hint.
+The KIWI `YotaOS-Security` profile includes **38 package entries**. The app menu contains **37 tool shortcuts** across eight categories, plus a dedicated **YotaOS Security Terminal**. Graphical tools open normally; CLI tools open Konsole with the YotaOS Security profile, run their usage command or interactive interface, then leave an interactive shell for further commands.
 
 No launcher starts a network scan, wireless capture, password attempt, or root-required audit by itself.
 
