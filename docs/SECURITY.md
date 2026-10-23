@@ -41,7 +41,7 @@ This is a read-only check of available names in the host's enabled DNF repositor
 
 ## Nested menu organization
 
-The fox launcher now has three levels: **YotaOS Security → category → task → tool**. For example:
+The default fox launcher is **KDE Application Menu (Kicker)**, which supports nested categories. The previous Application Launcher (Kickoff) flattened them. The fox menu now has three levels: **YotaOS Security → category → task → tool**. For example:
 
 - **Reconnaissance → Host Discovery → Nmap**
 - **Wireless → Wireless Auditing → Aircrack-ng**
@@ -49,6 +49,8 @@ The fox launcher now has three levels: **YotaOS Security → category → task �
 - **Reverse Engineering → Binary Analysis → radare2 / iaito (GUI) / ImHex (GUI)**
 
 There are two practical task folders in each of the eight categories (16 subfolders total). The top-level category ordering remains unchanged, and personal KDE Menu Editor overrides can still take precedence.
+
+The new Kicker default applies to **new Plasma layouts**. Existing user panels keep their current widget unless they switch via **Show Alternatives → Application Menu**. The fox icon and the 48 px floating panel layout are unchanged.
 
 **John the Ripper:** Its original program is terminal-based. Openwall maintains a separate Qt GUI named [Johnny](https://github.com/openwall/johnny); it is *not* bundled here because a reliable Fedora 44 package/build path has not been verified. Ophcrack is an additional GUI tool, **not** a frontend for John.
 
