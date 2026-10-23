@@ -1,23 +1,13 @@
-# YotaOS Build System
+# Image build
 
-YotaOS images are built using KIWI on Fedora.
+The YotaOS ISO uses Fedora 44 KIWI definitions, pinned in `upstream.conf`. The upstream tree is downloaded into `build/upstream/` at build time and isn't tracked in this repository.
 
-## Current Target
+`prepare-upstream.sh` fetches the pinned Fedora files. `apply-yotaos.sh` copies in the YotaOS profiles and root overlay. `build.sh` runs those steps and then builds the `YotaOS-Desktop-Live` profile.
 
-- Base: Fedora 44
-- Architecture: x86_64
-- Desktop: KDE Plasma
-- Image type: Live ISO
-- Upstream profile: KDE-Desktop-Live
+The live profile currently pulls in `YotaOS-Security`, which inherits `YotaOS-Desktop`. The profile names are used by build hooks, so don't rename them casually.
 
-## Design
+The final ISO goes into `build/output/`. KIWI working directories live under `/var/tmp/yotaos-build` and `/var/tmp/yotaos-build-build`. The build script removes the previous contents of those paths before starting a new build.
 
-YotaOS uses Fedora's KIWI image definitions as its upstream base and applies
-YotaOS-specific changes on top.
+Generated ISOs and scratch files should not be committed.
 
-The upstream Fedora definitions are not vendored wholesale into this repository.
-
-## Output
-
-Generated images and temporary build artifacts belong in `build/output/`
-and must not be committed to Git.
+See [the build guide](../docs/BUILDING.md) for prerequisites, commands, and VM checks.
